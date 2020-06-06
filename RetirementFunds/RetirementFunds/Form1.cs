@@ -16,5 +16,10 @@ namespace RetirementFunds
         {
             InitializeComponent();
         }
+
+        private void PrincipleTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

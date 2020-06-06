@@ -1,0 +1,4 @@
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.csprojAssemblyReference.cache
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.Properties.Resources.resources
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.csproj.GenerateResource.cache
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.csproj.CoreCompileInputs.cache
