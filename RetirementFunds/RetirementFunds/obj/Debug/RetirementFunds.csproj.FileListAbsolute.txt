@@ -2,3 +2,16 @@ M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\Retir
 M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.Properties.Resources.resources
 M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.csproj.GenerateResource.cache
 M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.csproj.CoreCompileInputs.cache
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.Form1.resources
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\RetirementFunds.exe.config
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\RetirementFunds.exe
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\RetirementFunds.pdb
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.dll
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.Wpf.dll
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.pdb
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.xml
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.Wpf.pdb
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.Wpf.xml
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.csproj.CopyComplete
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.exe
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.pdb
