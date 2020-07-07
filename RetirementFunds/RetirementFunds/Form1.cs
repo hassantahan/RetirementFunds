@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Security.Policy;
@@ -37,13 +38,13 @@ namespace RetirementFunds
         // If the textboxes that are required to operate the calculation are empty, the Go! button is disabled.
         private void CheckIfTextBoxEmpty()
         {
-            if (txtPrinciple.TextLength > 0 && txtEnterYears.TextLength > 0 && txtEnterInterest.TextLength > 0 && txtPeriods.TextLength > 0)
+            if (txtPrincipal.TextLength > 0 && txtEnterYears.TextLength > 0 && txtEnterInterest.TextLength > 0 && txtPeriods.TextLength > 0)
             {
                 if (txtAnnuity.Enabled == false)
                 {
                     btnCalculate.Enabled = true;
                 }
-                else if (txtAnnuity.TextLength > 0)
+                else if (txtAnnuity.TextLength > 0 && txtPaymentFrequency.TextLength > 0 && txtPaymentGrowth.TextLength > 0)
                 {
                     btnCalculate.Enabled = true;
                 }
@@ -58,92 +59,121 @@ namespace RetirementFunds
             }
         }
 
-        private void txtPrinciple_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GarbageNonText(sender, e);
-        }
-
-        private void txtEnterYears_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GarbageNonText(sender, e);
-        }
-
-        private void txtEnterInterest_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GarbageNonText(sender, e);
-        }
-
-        private void txtAnnuity_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            GarbageNonText(sender, e);
-        }
-
-        private void txtPrinciple_KeyUp(object sender, KeyEventArgs e)
-        {
-            CheckIfTextBoxEmpty();
-        }
-
-        private void txtEnterYears_KeyUp(object sender, KeyEventArgs e)
-        {
-            CheckIfTextBoxEmpty();
-        }
-
-        private void txtEnterInterest_KeyUp(object sender, KeyEventArgs e)
-        {
-            CheckIfTextBoxEmpty();
-        }
-
-        private void txtAnnuity_KeyUp(object sender, KeyEventArgs e)
-        {
-            CheckIfTextBoxEmpty();
-        }
-
         private void chkAnnuity_CheckedChanged(object sender, EventArgs e)
         {
             if (chkAnnuity.Checked)
             {
                 txtAnnuity.Enabled = true;
+                txtPaymentFrequency.Enabled = true;
+                txtPaymentGrowth.Enabled = true;
                 chkPaymentAt.Enabled = true;
             }
             else
             {
                 txtAnnuity.Enabled = false;
+                txtPaymentFrequency.Enabled = false;
+                txtPaymentGrowth.Enabled = false;
                 chkPaymentAt.Enabled = false;
             }
 
             CheckIfTextBoxEmpty();
         }
 
-        private void txtPeriods_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtPrincipal_KeyPress(object sender, KeyPressEventArgs e)
         {
             GarbageNonText(sender, e);
         }
 
-        private void txtPeriods_KeyUp(object sender, KeyEventArgs e)
+        private void txtPrincipal_KeyUp(object sender, KeyEventArgs e)
         {
+            CheckIfTextBoxEmpty();          
+        }
+
+        private void txtPrincipal_Leave(object sender, EventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+
+            if (txt.Tag.Equals("dollar"))
+            {
+                if (txtPrincipal.TextLength > 0)
+                {
+                    decimal temp = decimal.Parse(txt.Text, NumberStyles.Currency);
+                    txt.Text = temp.ToString("C2");
+                }
+                else
+                {
+                    txt.Text = "$0.00";
+                }
+            }
+            else if (txt.Tag.Equals("rate"))
+            {
+                if (txt.TextLength > 0)
+                {
+                    float temp = float.Parse(txt.Text);
+                    txt.Text = temp.ToString("0.00");
+                }
+                else
+                {
+                    txt.Text = "0.00";
+                }
+            }
+            else if (txt.Tag.Equals("period"))
+            {
+                if (txt.TextLength > 0)
+                {
+                    double temp = double.Parse(txt.Text);
+                    temp = Math.Round(temp);
+                    txt.Text = temp.ToString();
+                }
+                else
+                {
+                    txt.Text = "1";
+                }
+            }
+
             CheckIfTextBoxEmpty();
+        }
+
+        private void txtPrincipal_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                txtPrincipal_Leave(sender, e);
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            decimal principle = decimal.Parse(txtPrinciple.Text);
+            decimal principal = decimal.Parse(txtPrincipal.Text, NumberStyles.Currency);
             float gain = float.Parse(txtEnterInterest.Text) / 100;
             float length = float.Parse(txtEnterYears.Text);
             int periods = int.Parse(txtPeriods.Text);
 
-            decimal fv = FinanceCalculations.FutureValue(principle, length, gain, periods);
-            decimal pv = FinanceCalculations.PresentValue(principle, length, gain, periods);
+            decimal total = new decimal();
 
             if (chkAnnuity.Checked)
             {
-                decimal payment = decimal.Parse(txtAnnuity.Text);
+                decimal payment = decimal.Parse(txtAnnuity.Text, NumberStyles.Currency);
                 int immediately = chkPaymentAt.Checked ? 1 : 0;
-                decimal afv = FinanceCalculations.FutureFixedAnnuityValue(payment, length, gain, periods, immediately);
-                lblAnnuityFixed.Text = afv.ToString("C2");
+                int frequencyOfPayments = int.Parse(txtPaymentFrequency.Text);
+                float growth = float.Parse(txtPaymentGrowth.Text) / 100;
+
+                decimal afv;
+
+                if (growth == 0)
+                {
+                    afv = FinanceCalculations.FutureFixedAnnuityValue(payment, length, gain, periods, immediately, frequencyOfPayments);
+                }
+                else
+                {
+                    afv = FinanceCalculations.FutureVariableAnnuityValue(payment, length, gain, growth, periods, immediately, frequencyOfPayments);
+                }
+
+                total += afv;
             }
 
-            lblFutureValue.Text = fv.ToString("C2");
-            lblPresentValue.Text = pv.ToString("C2");
+            total += FinanceCalculations.FutureValue(principal, length, gain, periods);
+
+            lblAnnuityFixed.Text = total.ToString("C2");
+
         }        
     }
 }
