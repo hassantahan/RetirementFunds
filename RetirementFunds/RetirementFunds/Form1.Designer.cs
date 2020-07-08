@@ -32,17 +32,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lblEnterPrincipalLabel = new System.Windows.Forms.Label();
             this.txtPrincipal = new System.Windows.Forms.TextBox();
-            this.lblEnterTime = new System.Windows.Forms.Label();
-            this.lblEnterInterest = new System.Windows.Forms.Label();
-            this.txtEnterYears = new System.Windows.Forms.TextBox();
-            this.txtEnterInterest = new System.Windows.Forms.TextBox();
-            this.btnCalculate = new System.Windows.Forms.Button();
-            this.lblAnnuity = new System.Windows.Forms.Label();
-            this.txtAnnuity = new System.Windows.Forms.TextBox();
+            this.lblPeriods = new System.Windows.Forms.Label();
+            this.lblGain = new System.Windows.Forms.Label();
             this.txtPeriods = new System.Windows.Forms.TextBox();
-            this.lblEnterPeriods = new System.Windows.Forms.Label();
+            this.txtGain = new System.Windows.Forms.TextBox();
+            this.btnCalculate = new System.Windows.Forms.Button();
+            this.lblAnnuityPayment = new System.Windows.Forms.Label();
+            this.txtAnnuityPayment = new System.Windows.Forms.TextBox();
+            this.txtCompoundingFrequency = new System.Windows.Forms.TextBox();
+            this.lblCompoundingFrequency = new System.Windows.Forms.Label();
             this.chkAnnuity = new System.Windows.Forms.CheckBox();
-            this.lblAnnuityFixed = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.chkPaymentAt = new System.Windows.Forms.CheckBox();
             this.txtPaymentFrequency = new System.Windows.Forms.TextBox();
             this.lblPaymentFrequency = new System.Windows.Forms.Label();
@@ -57,6 +57,7 @@
             this.tltAnnuityAmount = new System.Windows.Forms.ToolTip(this.components);
             this.tltPaymentGrowth = new System.Windows.Forms.ToolTip(this.components);
             this.tltPaymentFrequency = new System.Windows.Forms.ToolTip(this.components);
+            this.carcMain = new LiveCharts.WinForms.CartesianChart();
             this.SuspendLayout();
             // 
             // lblEnterPrincipalLabel
@@ -82,60 +83,61 @@
             this.txtPrincipal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
             this.txtPrincipal.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
             this.txtPrincipal.Leave += new System.EventHandler(this.txtPrincipal_Leave);
+            this.txtPrincipal.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtPrincipal_PreviewKeyDown);
             // 
-            // lblEnterTime
+            // lblPeriods
             // 
-            this.lblEnterTime.AutoSize = true;
-            this.lblEnterTime.Location = new System.Drawing.Point(12, 34);
-            this.lblEnterTime.Name = "lblEnterTime";
-            this.lblEnterTime.Size = new System.Drawing.Size(72, 13);
-            this.lblEnterTime.TabIndex = 2;
-            this.lblEnterTime.Text = "Total Periods:";
-            this.tltTotalPeriods.SetToolTip(this.lblEnterTime, "The length of periods (i.e. time) that the principal and any subsequent investmen" +
+            this.lblPeriods.AutoSize = true;
+            this.lblPeriods.Location = new System.Drawing.Point(12, 34);
+            this.lblPeriods.Name = "lblPeriods";
+            this.lblPeriods.Size = new System.Drawing.Size(72, 13);
+            this.lblPeriods.TabIndex = 2;
+            this.lblPeriods.Text = "Total Periods:";
+            this.tltTotalPeriods.SetToolTip(this.lblPeriods, "The length of periods (i.e. time) that the principal and any subsequent investmen" +
         "t will grow.\r\nPeriods will typically be years, but it can be any length of time." +
         "");
             // 
-            // lblEnterInterest
+            // lblGain
             // 
-            this.lblEnterInterest.AutoSize = true;
-            this.lblEnterInterest.Location = new System.Drawing.Point(12, 58);
-            this.lblEnterInterest.Name = "lblEnterInterest";
-            this.lblEnterInterest.Size = new System.Drawing.Size(75, 13);
-            this.lblEnterInterest.TabIndex = 3;
-            this.lblEnterInterest.Text = "Gain Rate (%):";
-            this.tltGainRate.SetToolTip(this.lblEnterInterest, "The rate at which the investment will grow for every given period.");
+            this.lblGain.AutoSize = true;
+            this.lblGain.Location = new System.Drawing.Point(12, 58);
+            this.lblGain.Name = "lblGain";
+            this.lblGain.Size = new System.Drawing.Size(75, 13);
+            this.lblGain.TabIndex = 3;
+            this.lblGain.Text = "Gain Rate (%):";
+            this.tltGainRate.SetToolTip(this.lblGain, "The rate at which the investment will grow for every given period.");
             // 
-            // txtEnterYears
+            // txtPeriods
             // 
-            this.txtEnterYears.Location = new System.Drawing.Point(241, 31);
-            this.txtEnterYears.Name = "txtEnterYears";
-            this.txtEnterYears.Size = new System.Drawing.Size(100, 20);
-            this.txtEnterYears.TabIndex = 2;
-            this.txtEnterYears.Tag = "period";
-            this.txtEnterYears.Text = "10";
-            this.txtEnterYears.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtEnterYears.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
-            this.txtEnterYears.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
-            this.txtEnterYears.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
-            this.txtEnterYears.Leave += new System.EventHandler(this.txtPrincipal_Leave);
+            this.txtPeriods.Location = new System.Drawing.Point(241, 31);
+            this.txtPeriods.Name = "txtPeriods";
+            this.txtPeriods.Size = new System.Drawing.Size(100, 20);
+            this.txtPeriods.TabIndex = 2;
+            this.txtPeriods.Tag = "period";
+            this.txtPeriods.Text = "10";
+            this.txtPeriods.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPeriods.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
+            this.txtPeriods.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
+            this.txtPeriods.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
+            this.txtPeriods.Leave += new System.EventHandler(this.txtPrincipal_Leave);
             // 
-            // txtEnterInterest
+            // txtGain
             // 
-            this.txtEnterInterest.Location = new System.Drawing.Point(241, 55);
-            this.txtEnterInterest.Name = "txtEnterInterest";
-            this.txtEnterInterest.Size = new System.Drawing.Size(100, 20);
-            this.txtEnterInterest.TabIndex = 3;
-            this.txtEnterInterest.Tag = "rate";
-            this.txtEnterInterest.Text = "1.00";
-            this.txtEnterInterest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtEnterInterest.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
-            this.txtEnterInterest.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
-            this.txtEnterInterest.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
-            this.txtEnterInterest.Leave += new System.EventHandler(this.txtPrincipal_Leave);
+            this.txtGain.Location = new System.Drawing.Point(241, 55);
+            this.txtGain.Name = "txtGain";
+            this.txtGain.Size = new System.Drawing.Size(100, 20);
+            this.txtGain.TabIndex = 3;
+            this.txtGain.Tag = "rate";
+            this.txtGain.Text = "1.00";
+            this.txtGain.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtGain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
+            this.txtGain.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
+            this.txtGain.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
+            this.txtGain.Leave += new System.EventHandler(this.txtPrincipal_Leave);
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(15, 108);
+            this.btnCalculate.Location = new System.Drawing.Point(12, 415);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(75, 23);
             this.btnCalculate.TabIndex = 10;
@@ -143,54 +145,55 @@
             this.btnCalculate.UseVisualStyleBackColor = true;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
-            // lblAnnuity
+            // lblAnnuityPayment
             // 
-            this.lblAnnuity.AutoSize = true;
-            this.lblAnnuity.Location = new System.Drawing.Point(386, 31);
-            this.lblAnnuity.Name = "lblAnnuity";
-            this.lblAnnuity.Size = new System.Drawing.Size(99, 13);
-            this.lblAnnuity.TabIndex = 9;
-            this.lblAnnuity.Text = "Period Payment ($):";
-            this.tltAnnuityAmount.SetToolTip(this.lblAnnuity, "The amount you pay each period.");
+            this.lblAnnuityPayment.AutoSize = true;
+            this.lblAnnuityPayment.Location = new System.Drawing.Point(386, 31);
+            this.lblAnnuityPayment.Name = "lblAnnuityPayment";
+            this.lblAnnuityPayment.Size = new System.Drawing.Size(99, 13);
+            this.lblAnnuityPayment.TabIndex = 9;
+            this.lblAnnuityPayment.Text = "Period Payment ($):";
+            this.tltAnnuityAmount.SetToolTip(this.lblAnnuityPayment, "The amount you pay each period.");
             // 
-            // txtAnnuity
+            // txtAnnuityPayment
             // 
-            this.txtAnnuity.Enabled = false;
-            this.txtAnnuity.Location = new System.Drawing.Point(615, 29);
-            this.txtAnnuity.Name = "txtAnnuity";
-            this.txtAnnuity.Size = new System.Drawing.Size(100, 20);
-            this.txtAnnuity.TabIndex = 6;
-            this.txtAnnuity.Tag = "dollar";
-            this.txtAnnuity.Text = "$1 000.00";
-            this.txtAnnuity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtAnnuity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
-            this.txtAnnuity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
-            this.txtAnnuity.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
-            this.txtAnnuity.Leave += new System.EventHandler(this.txtPrincipal_Leave);
+            this.txtAnnuityPayment.Enabled = false;
+            this.txtAnnuityPayment.Location = new System.Drawing.Point(615, 29);
+            this.txtAnnuityPayment.Name = "txtAnnuityPayment";
+            this.txtAnnuityPayment.Size = new System.Drawing.Size(100, 20);
+            this.txtAnnuityPayment.TabIndex = 6;
+            this.txtAnnuityPayment.Tag = "dollar";
+            this.txtAnnuityPayment.Text = "$1 000.00";
+            this.txtAnnuityPayment.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAnnuityPayment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
+            this.txtAnnuityPayment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
+            this.txtAnnuityPayment.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
+            this.txtAnnuityPayment.Leave += new System.EventHandler(this.txtPrincipal_Leave);
+            this.txtAnnuityPayment.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtPrincipal_PreviewKeyDown);
             // 
-            // txtPeriods
+            // txtCompoundingFrequency
             // 
-            this.txtPeriods.Location = new System.Drawing.Point(241, 81);
-            this.txtPeriods.Name = "txtPeriods";
-            this.txtPeriods.Size = new System.Drawing.Size(100, 20);
-            this.txtPeriods.TabIndex = 4;
-            this.txtPeriods.Tag = "period";
-            this.txtPeriods.Text = "1";
-            this.txtPeriods.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPeriods.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
-            this.txtPeriods.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
-            this.txtPeriods.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
-            this.txtPeriods.Leave += new System.EventHandler(this.txtPrincipal_Leave);
+            this.txtCompoundingFrequency.Location = new System.Drawing.Point(241, 81);
+            this.txtCompoundingFrequency.Name = "txtCompoundingFrequency";
+            this.txtCompoundingFrequency.Size = new System.Drawing.Size(100, 20);
+            this.txtCompoundingFrequency.TabIndex = 4;
+            this.txtCompoundingFrequency.Tag = "period";
+            this.txtCompoundingFrequency.Text = "1";
+            this.txtCompoundingFrequency.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCompoundingFrequency.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
+            this.txtCompoundingFrequency.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
+            this.txtCompoundingFrequency.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
+            this.txtCompoundingFrequency.Leave += new System.EventHandler(this.txtPrincipal_Leave);
             // 
-            // lblEnterPeriods
+            // lblCompoundingFrequency
             // 
-            this.lblEnterPeriods.AutoSize = true;
-            this.lblEnterPeriods.Location = new System.Drawing.Point(12, 84);
-            this.lblEnterPeriods.Name = "lblEnterPeriods";
-            this.lblEnterPeriods.Size = new System.Drawing.Size(125, 13);
-            this.lblEnterPeriods.TabIndex = 11;
-            this.lblEnterPeriods.Text = "Compounding Frequency";
-            this.tltEnterPeriods.SetToolTip(this.lblEnterPeriods, "The amount of times the investment will be compounded in a period.");
+            this.lblCompoundingFrequency.AutoSize = true;
+            this.lblCompoundingFrequency.Location = new System.Drawing.Point(12, 84);
+            this.lblCompoundingFrequency.Name = "lblCompoundingFrequency";
+            this.lblCompoundingFrequency.Size = new System.Drawing.Size(128, 13);
+            this.lblCompoundingFrequency.TabIndex = 11;
+            this.lblCompoundingFrequency.Text = "Compounding Frequency:";
+            this.tltEnterPeriods.SetToolTip(this.lblCompoundingFrequency, "The amount of times the investment will be compounded in a period.");
             // 
             // chkAnnuity
             // 
@@ -205,15 +208,15 @@
             this.chkAnnuity.UseVisualStyleBackColor = true;
             this.chkAnnuity.CheckedChanged += new System.EventHandler(this.chkAnnuity_CheckedChanged);
             // 
-            // lblAnnuityFixed
+            // lblTotal
             // 
-            this.lblAnnuityFixed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblAnnuityFixed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnnuityFixed.Location = new System.Drawing.Point(615, 108);
-            this.lblAnnuityFixed.Name = "lblAnnuityFixed";
-            this.lblAnnuityFixed.Size = new System.Drawing.Size(100, 23);
-            this.lblAnnuityFixed.TabIndex = 14;
-            this.lblAnnuityFixed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(611, 418);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(100, 23);
+            this.lblTotal.TabIndex = 14;
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // chkPaymentAt
             // 
@@ -335,30 +338,41 @@
             this.tltPaymentFrequency.ReshowDelay = 100;
             this.tltPaymentFrequency.ToolTipTitle = "Payment Frequency";
             // 
+            // carcMain
+            // 
+            this.carcMain.Location = new System.Drawing.Point(15, 115);
+            this.carcMain.Name = "carcMain";
+            this.carcMain.Size = new System.Drawing.Size(696, 282);
+            this.carcMain.TabIndex = 19;
+            this.carcMain.Text = "cartesianChart1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Honeydew;
             this.ClientSize = new System.Drawing.Size(723, 450);
+            this.Controls.Add(this.carcMain);
             this.Controls.Add(this.txtPaymentGrowth);
             this.Controls.Add(this.lblPaymentGrowth);
             this.Controls.Add(this.txtPaymentFrequency);
             this.Controls.Add(this.lblPaymentFrequency);
             this.Controls.Add(this.chkPaymentAt);
-            this.Controls.Add(this.lblAnnuityFixed);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.chkAnnuity);
-            this.Controls.Add(this.txtPeriods);
-            this.Controls.Add(this.lblEnterPeriods);
-            this.Controls.Add(this.txtAnnuity);
-            this.Controls.Add(this.lblAnnuity);
+            this.Controls.Add(this.txtCompoundingFrequency);
+            this.Controls.Add(this.lblCompoundingFrequency);
+            this.Controls.Add(this.txtAnnuityPayment);
+            this.Controls.Add(this.lblAnnuityPayment);
             this.Controls.Add(this.btnCalculate);
-            this.Controls.Add(this.txtEnterInterest);
-            this.Controls.Add(this.txtEnterYears);
-            this.Controls.Add(this.lblEnterInterest);
-            this.Controls.Add(this.lblEnterTime);
+            this.Controls.Add(this.txtGain);
+            this.Controls.Add(this.txtPeriods);
+            this.Controls.Add(this.lblGain);
+            this.Controls.Add(this.lblPeriods);
             this.Controls.Add(this.txtPrincipal);
             this.Controls.Add(this.lblEnterPrincipalLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Retirement Funds";
             this.ResumeLayout(false);
@@ -370,17 +384,17 @@
 
         private System.Windows.Forms.Label lblEnterPrincipalLabel;
         private System.Windows.Forms.TextBox txtPrincipal;
-        private System.Windows.Forms.Label lblEnterTime;
-        private System.Windows.Forms.Label lblEnterInterest;
-        private System.Windows.Forms.TextBox txtEnterYears;
-        private System.Windows.Forms.TextBox txtEnterInterest;
-        private System.Windows.Forms.Button btnCalculate;
-        private System.Windows.Forms.Label lblAnnuity;
-        private System.Windows.Forms.TextBox txtAnnuity;
+        private System.Windows.Forms.Label lblPeriods;
+        private System.Windows.Forms.Label lblGain;
         private System.Windows.Forms.TextBox txtPeriods;
-        private System.Windows.Forms.Label lblEnterPeriods;
+        private System.Windows.Forms.TextBox txtGain;
+        private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.Label lblAnnuityPayment;
+        private System.Windows.Forms.TextBox txtAnnuityPayment;
+        private System.Windows.Forms.TextBox txtCompoundingFrequency;
+        private System.Windows.Forms.Label lblCompoundingFrequency;
         private System.Windows.Forms.CheckBox chkAnnuity;
-        private System.Windows.Forms.Label lblAnnuityFixed;
+        private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.CheckBox chkPaymentAt;
         private System.Windows.Forms.TextBox txtPaymentFrequency;
         private System.Windows.Forms.Label lblPaymentFrequency;
@@ -395,6 +409,7 @@
         private System.Windows.Forms.ToolTip tltDueAnnuityCheck;
         private System.Windows.Forms.ToolTip tltPaymentFrequency;
         private System.Windows.Forms.ToolTip tltPaymentGrowth;
+        private LiveCharts.WinForms.CartesianChart carcMain;
     }
 }
 

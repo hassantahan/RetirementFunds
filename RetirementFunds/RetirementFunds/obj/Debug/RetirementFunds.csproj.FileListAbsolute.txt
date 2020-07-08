@@ -15,3 +15,6 @@ M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\Retir
 M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.csproj.CopyComplete
 M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.exe
 M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.pdb
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.WinForms.dll
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.WinForms.pdb
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.WinForms.xml
