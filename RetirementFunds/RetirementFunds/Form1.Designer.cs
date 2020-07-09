@@ -58,6 +58,7 @@
             this.tltPaymentGrowth = new System.Windows.Forms.ToolTip(this.components);
             this.tltPaymentFrequency = new System.Windows.Forms.ToolTip(this.components);
             this.carcMain = new LiveCharts.WinForms.CartesianChart();
+            this.btnInvesting = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblEnterPrincipalLabel
@@ -137,11 +138,12 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(12, 415);
+            this.btnCalculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalculate.Location = new System.Drawing.Point(255, 415);
             this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(75, 23);
+            this.btnCalculate.Size = new System.Drawing.Size(238, 23);
             this.btnCalculate.TabIndex = 10;
-            this.btnCalculate.Text = "Go!";
+            this.btnCalculate.Text = "Calculate";
             this.btnCalculate.UseVisualStyleBackColor = true;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
@@ -346,12 +348,23 @@
             this.carcMain.TabIndex = 19;
             this.carcMain.Text = "cartesianChart1";
             // 
+            // btnInvesting
+            // 
+            this.btnInvesting.Location = new System.Drawing.Point(15, 415);
+            this.btnInvesting.Name = "btnInvesting";
+            this.btnInvesting.Size = new System.Drawing.Size(115, 23);
+            this.btnInvesting.TabIndex = 20;
+            this.btnInvesting.Text = "Go to Investing";
+            this.btnInvesting.UseVisualStyleBackColor = true;
+            this.btnInvesting.Click += new System.EventHandler(this.btnInvesting_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Honeydew;
             this.ClientSize = new System.Drawing.Size(723, 450);
+            this.Controls.Add(this.btnInvesting);
             this.Controls.Add(this.carcMain);
             this.Controls.Add(this.txtPaymentGrowth);
             this.Controls.Add(this.lblPaymentGrowth);
@@ -410,6 +423,7 @@
         private System.Windows.Forms.ToolTip tltPaymentFrequency;
         private System.Windows.Forms.ToolTip tltPaymentGrowth;
         private LiveCharts.WinForms.CartesianChart carcMain;
+        private System.Windows.Forms.Button btnInvesting;
     }
 }
 

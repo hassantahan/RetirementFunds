@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using LiveCharts;
 using LiveCharts.Wpf;
@@ -20,6 +21,7 @@ namespace RetirementFunds
         public Form1()
         {
             InitializeComponent();
+            carcMain.Series = new SeriesCollection();
             GenerateChart(int.Parse(txtPeriods.Text));
             lblTotal.Text = CalculatePrincipal(int.Parse(txtPeriods.Text)).ToString("C2");
         }
@@ -39,7 +41,7 @@ namespace RetirementFunds
             }
         }
 
-        // If the textboxes that are required to operate the calculation are empty, the Go! button is disabled.
+        // If the textboxes that are required to operate the calculation are empty, the 'Calculate' button is disabled.
         private void CheckIfTextBoxEmpty()
         {
             if (txtPrincipal.TextLength > 0 && txtPeriods.TextLength > 0 && txtGain.TextLength > 0 && txtCompoundingFrequency.TextLength > 0)
@@ -99,7 +101,12 @@ namespace RetirementFunds
 
             if (txt.Tag.Equals("dollar"))
             {
-                if (txtPrincipal.TextLength > 0)
+                if (txt.Text == "$")
+                {
+                    btnCalculate.Enabled = false;
+                    txt.Text = "$0.00";
+                }
+                else if (txtPrincipal.TextLength > 0)
                 {
                     decimal temp = decimal.Parse(txt.Text, NumberStyles.Currency);
                     txt.Text = temp.ToString("C2");
@@ -146,11 +153,12 @@ namespace RetirementFunds
 
         private void txtPrincipal_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (!Char.IsNumber(e.KeyValue.ToString()[0])) return;
-            
+            int i;
             TextBox txt = (TextBox)sender;            
+            if (!int.TryParse(e.KeyValue.ToString(), out i)|| (txt.Text.Length - 1) <= txt.SelectionStart ||  txt.Text.Length == 0) return;
+                                   
             char x = txt.Text[txt.SelectionStart];
-            if (x.Equals('$'))
+            if (x.Equals('$') && txt.Text.Length > 1)
             {
                 txt.SelectionStart++;
             }
@@ -223,27 +231,26 @@ namespace RetirementFunds
                 }                    
             }
 
-            carcMain.Series = new SeriesCollection
-            {
-                new LineSeries
-                {
-                    Values = new ChartValues<decimal>(seriesAmount),
-                    LabelPoint = point => point.Y.ToString("C2"),
-                    Name = "Total",
-                },
+            carcMain.Series.Clear();
+            BuildChart(seriesAmount);
+            BuildChart(paidAmount);
+        }
 
+        private void BuildChart(decimal[] series)
+        {
+            carcMain.Series.Add
+            (
                 new LineSeries
                 {
-                    Values = new ChartValues<decimal>(paidAmount),
+                    Values = new ChartValues<decimal>(series),
                     LabelPoint = point => point.Y.ToString("C2"),
-                    Name = "Saved",
-                },                
-            };
+                }
+            );
 
             carcMain.AxisX.Clear();
             carcMain.AxisY.Clear();
 
-            carcMain.AxisX.Add 
+            carcMain.AxisX.Add
             (
                 new Axis
                 {
@@ -258,6 +265,13 @@ namespace RetirementFunds
                     Title = "Value"
                 }
             );
-        }        
+        }
+
+        private void btnInvesting_Click(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2();
+            f2.Show();
+            this.Hide();
+        }
     }
-}
+};
