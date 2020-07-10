@@ -26,45 +26,6 @@ namespace RetirementFunds
             lblTotal.Text = CalculatePrincipal(int.Parse(txtPeriods.Text)).ToString("C2");
         }
 
-        // Method that makes sure a textbox only accepts numbers (with one decimal allowed)
-        private void GarbageNonText(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
-
-            // only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
-        }
-
-        // If the textboxes that are required to operate the calculation are empty, the 'Calculate' button is disabled.
-        private void CheckIfTextBoxEmpty()
-        {
-            if (txtPrincipal.TextLength > 0 && txtPeriods.TextLength > 0 && txtGain.TextLength > 0 && txtCompoundingFrequency.TextLength > 0)
-            {
-                if (txtAnnuityPayment.Enabled == false)
-                {
-                    btnCalculate.Enabled = true;
-                }
-                else if (txtAnnuityPayment.TextLength > 0 && txtPaymentFrequency.TextLength > 0 && txtPaymentGrowth.TextLength > 0)
-                {
-                    btnCalculate.Enabled = true;
-                }
-                else
-                {
-                    btnCalculate.Enabled = false;
-                }
-            }
-            else
-            {
-                btnCalculate.Enabled = false;
-            }
-        }
-
         private void chkAnnuity_CheckedChanged(object sender, EventArgs e)
         {
             if (chkAnnuity.Checked)
@@ -81,87 +42,29 @@ namespace RetirementFunds
                 txtPaymentGrowth.Enabled = false;
                 chkPaymentAt.Enabled = false;
             }
-
-            CheckIfTextBoxEmpty();
         }
 
         private void txtPrincipal_KeyPress(object sender, KeyPressEventArgs e)
         {
-            GarbageNonText(sender, e);
-        }
-
-        private void txtPrincipal_KeyUp(object sender, KeyEventArgs e)
-        {
-            CheckIfTextBoxEmpty();          
+            FormControlMethods.GarbageNonText(sender, e);
         }
 
         private void txtPrincipal_Leave(object sender, EventArgs e)
-        {
-            TextBox txt = (TextBox)sender;
-
-            if (txt.Tag.Equals("dollar"))
-            {
-                if (txt.Text == "$")
-                {
-                    btnCalculate.Enabled = false;
-                    txt.Text = "$0.00";
-                }
-                else if (txtPrincipal.TextLength > 0)
-                {
-                    decimal temp = decimal.Parse(txt.Text, NumberStyles.Currency);
-                    txt.Text = temp.ToString("C2");
-                }
-                else
-                {
-                    txt.Text = "$0.00";
-                }
-            }
-            else if (txt.Tag.Equals("rate"))
-            {
-                if (txt.TextLength > 0)
-                {
-                    float temp = float.Parse(txt.Text);
-                    txt.Text = temp.ToString("0.00");
-                }
-                else
-                {
-                    txt.Text = "0.00";
-                }
-            }
-            else if (txt.Tag.Equals("period"))
-            {
-                if (txt.TextLength > 0)
-                {
-                    double temp = double.Parse(txt.Text);
-                    temp = Math.Round(temp);
-                    txt.Text = temp.ToString();
-                }
-                else
-                {
-                    txt.Text = "1";
-                }
-            }
-
-            CheckIfTextBoxEmpty();
+        {            
+            FormControlMethods.FormatTextBox((TextBox)sender);
         }
 
         private void txtPrincipal_KeyDown(object sender, KeyEventArgs e)
-        {
+        {            
             if (e.KeyCode == Keys.Enter)
-                txtPrincipal_Leave(sender, e);
+            {
+                FormControlMethods.FormatTextBox((TextBox)sender);
+            }                
         }
 
         private void txtPrincipal_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            int i;
-            TextBox txt = (TextBox)sender;            
-            if (!int.TryParse(e.KeyValue.ToString(), out i)|| (txt.Text.Length - 1) <= txt.SelectionStart ||  txt.Text.Length == 0) return;
-                                   
-            char x = txt.Text[txt.SelectionStart];
-            if (x.Equals('$') && txt.Text.Length > 1)
-            {
-                txt.SelectionStart++;
-            }
+            FormControlMethods.FixTextBoxCursor((TextBox)sender, e);
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)

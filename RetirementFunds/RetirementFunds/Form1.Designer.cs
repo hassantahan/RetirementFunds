@@ -82,7 +82,6 @@
             this.txtPrincipal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPrincipal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
             this.txtPrincipal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
-            this.txtPrincipal.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
             this.txtPrincipal.Leave += new System.EventHandler(this.txtPrincipal_Leave);
             this.txtPrincipal.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtPrincipal_PreviewKeyDown);
             // 
@@ -119,7 +118,6 @@
             this.txtPeriods.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPeriods.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
             this.txtPeriods.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
-            this.txtPeriods.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
             this.txtPeriods.Leave += new System.EventHandler(this.txtPrincipal_Leave);
             // 
             // txtGain
@@ -133,7 +131,6 @@
             this.txtGain.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtGain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
             this.txtGain.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
-            this.txtGain.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
             this.txtGain.Leave += new System.EventHandler(this.txtPrincipal_Leave);
             // 
             // btnCalculate
@@ -169,7 +166,6 @@
             this.txtAnnuityPayment.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAnnuityPayment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
             this.txtAnnuityPayment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
-            this.txtAnnuityPayment.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
             this.txtAnnuityPayment.Leave += new System.EventHandler(this.txtPrincipal_Leave);
             this.txtAnnuityPayment.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtPrincipal_PreviewKeyDown);
             // 
@@ -184,7 +180,6 @@
             this.txtCompoundingFrequency.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCompoundingFrequency.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
             this.txtCompoundingFrequency.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
-            this.txtCompoundingFrequency.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
             this.txtCompoundingFrequency.Leave += new System.EventHandler(this.txtPrincipal_Leave);
             // 
             // lblCompoundingFrequency
@@ -245,7 +240,6 @@
             this.txtPaymentFrequency.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPaymentFrequency.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
             this.txtPaymentFrequency.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
-            this.txtPaymentFrequency.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
             this.txtPaymentFrequency.Leave += new System.EventHandler(this.txtPrincipal_Leave);
             // 
             // lblPaymentFrequency
@@ -270,7 +264,6 @@
             this.txtPaymentGrowth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPaymentGrowth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
             this.txtPaymentGrowth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
-            this.txtPaymentGrowth.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyUp);
             this.txtPaymentGrowth.Leave += new System.EventHandler(this.txtPrincipal_Leave);
             // 
             // lblPaymentGrowth

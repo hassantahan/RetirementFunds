@@ -15,11 +15,40 @@ namespace RetirementFunds
         public Form2()
         {
             InitializeComponent();
+            cboProjection.SelectedIndex = 0;
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void txtAge_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            FormControlMethods.GarbageNonText(sender, e);
+        }
+
+        private void txtPrincipal_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            FormControlMethods.FixTextBoxCursor((TextBox)sender, e);
+        }
+
+        private void txtAge_Leave(object sender, EventArgs e)
+        {
+            FormControlMethods.FormatTextBox((TextBox)sender);
+        }
+
+        private void txtAge_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                FormControlMethods.FormatTextBox((TextBox)sender);
+            }
+        }
+
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
