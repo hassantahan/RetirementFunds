@@ -16,5 +16,10 @@ namespace RetirementFunds
         {
             InitializeComponent();
         }
+
+        private void Form2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

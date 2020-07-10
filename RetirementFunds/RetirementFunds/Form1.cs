@@ -183,10 +183,8 @@ namespace RetirementFunds
         }
 
         private decimal CalculateAnnuity(int length, float rate)
-        {            
-            //float rate = float.Parse(txtGain.Text) / 100;            
+        {                    
             int frequency = int.Parse(txtCompoundingFrequency.Text);
-
             decimal payment = decimal.Parse(txtAnnuityPayment.Text, NumberStyles.Currency);
             int immediately = chkPaymentAt.Checked ? 1 : 0;
             int paymentFrequency = int.Parse(txtPaymentFrequency.Text);
@@ -271,7 +269,7 @@ namespace RetirementFunds
         {
             Form2 f2 = new Form2();
             f2.Show();
-            this.Hide();
+            Hide();
         }
     }
 };
