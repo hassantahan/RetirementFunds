@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +44,68 @@ namespace RetirementFunds
             if (e.KeyCode == Keys.Enter)
             {
                 FormControlMethods.FormatTextBox((TextBox)sender);
+                if (sender.Equals(txtIncome) || sender.Equals(txtSpending))
+                {
+                    txtIncome_Leave(sender, e);
+                }
+                else if (sender.Equals(txtSpendingFractionGrowth) || sender.Equals(txtSavingFractionGrowth))
+                {
+                    txtSpendingFractionGrowth_Leave(sender, e);
+                }
+                else if (sender.Equals(txtStockFraction) || sender.Equals(txtBondFraction))
+                {
+                    txtStockFraction_Leave(sender, e);
+                }
+            }            
+        }
+
+        private void txtSpendingFractionGrowth_Leave(object sender, EventArgs e)
+        {
+            FormControlMethods.FormatTextBox((TextBox)sender);
+
+            float savingsFraction = float.Parse(txtSavingFractionGrowth.Text);
+            float spendingFraction = float.Parse(txtSpendingFractionGrowth.Text);
+
+            if (sender.Equals(txtSavingFractionGrowth))
+            {
+                spendingFraction = 100f - savingsFraction;
+                txtSpendingFractionGrowth.Text = spendingFraction.ToString("0.0");
             }
+            else
+            {
+                savingsFraction = 100f - spendingFraction;
+                txtSavingFractionGrowth.Text = savingsFraction.ToString("0.0");
+            }
+        }
+
+        private void txtStockFraction_Leave(object sender, EventArgs e)
+        {
+            FormControlMethods.FormatTextBox((TextBox)sender);
+
+            float stockFraction = float.Parse(txtStockFraction.Text);
+            float bondFraction = float.Parse(txtBondFraction.Text);
+
+            if (sender.Equals(txtStockFraction))
+            {
+                bondFraction = 100f - stockFraction;
+                txtBondFraction.Text = bondFraction.ToString("0.0");
+            }
+            else
+            {
+                stockFraction = 100f - bondFraction;
+                txtStockFraction.Text = stockFraction.ToString("0.0");
+            }
+        }
+
+        private void txtIncome_Leave(object sender, EventArgs e)
+        {
+            FormControlMethods.FormatTextBox((TextBox)sender);
+
+            decimal income = decimal.Parse(txtIncome.Text, NumberStyles.Currency);
+            decimal spending = decimal.Parse(txtSpending.Text, NumberStyles.Currency);
+            decimal savings = income - spending;
+
+            txtSavings.Text = savings.ToString("C2") + " (" +  (savings / income * 100).ToString("0.0") + "%)";
         }
 
         private void btnRun_Click(object sender, EventArgs e)

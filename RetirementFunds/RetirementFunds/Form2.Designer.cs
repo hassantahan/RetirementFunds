@@ -136,11 +136,11 @@
             this.txtIncome.Size = new System.Drawing.Size(100, 20);
             this.txtIncome.TabIndex = 3;
             this.txtIncome.Tag = "dollar";
-            this.txtIncome.Text = "$1 000.00";
+            this.txtIncome.Text = "$75 000.00";
             this.txtIncome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtIncome.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtIncome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
-            this.txtIncome.Leave += new System.EventHandler(this.txtAge_Leave);
+            this.txtIncome.Leave += new System.EventHandler(this.txtIncome_Leave);
             this.txtIncome.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtPrincipal_PreviewKeyDown);
             // 
             // lblSpending
@@ -155,12 +155,12 @@
             // txtSavings
             // 
             this.txtSavings.Enabled = false;
-            this.txtSavings.Location = new System.Drawing.Point(194, 116);
+            this.txtSavings.Location = new System.Drawing.Point(177, 116);
             this.txtSavings.Name = "txtSavings";
-            this.txtSavings.Size = new System.Drawing.Size(100, 20);
+            this.txtSavings.Size = new System.Drawing.Size(117, 20);
             this.txtSavings.TabIndex = 5;
             this.txtSavings.Tag = "dollar";
-            this.txtSavings.Text = "$1 000.00";
+            this.txtSavings.Text = "$15 000.00 (20.0%)";
             this.txtSavings.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSavings.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtSavings.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -183,11 +183,11 @@
             this.txtSpending.Size = new System.Drawing.Size(100, 20);
             this.txtSpending.TabIndex = 4;
             this.txtSpending.Tag = "dollar";
-            this.txtSpending.Text = "$1 000.00";
+            this.txtSpending.Text = "$60 000.00";
             this.txtSpending.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSpending.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtSpending.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
-            this.txtSpending.Leave += new System.EventHandler(this.txtAge_Leave);
+            this.txtSpending.Leave += new System.EventHandler(this.txtIncome_Leave);
             this.txtSpending.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtPrincipal_PreviewKeyDown);
             // 
             // lblRetirementSpending
@@ -206,7 +206,7 @@
             this.txtRetirementSpending.Size = new System.Drawing.Size(100, 20);
             this.txtRetirementSpending.TabIndex = 10;
             this.txtRetirementSpending.Tag = "dollar";
-            this.txtRetirementSpending.Text = "$1 000.00";
+            this.txtRetirementSpending.Text = "$40 000.00";
             this.txtRetirementSpending.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtRetirementSpending.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtRetirementSpending.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -230,7 +230,7 @@
             this.txtWithdrawlRate.Size = new System.Drawing.Size(100, 20);
             this.txtWithdrawlRate.TabIndex = 12;
             this.txtWithdrawlRate.Tag = "rate";
-            this.txtWithdrawlRate.Text = "1.00";
+            this.txtWithdrawlRate.Text = "3.00";
             this.txtWithdrawlRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtWithdrawlRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtWithdrawlRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -261,7 +261,7 @@
             this.txtTaxRate.Size = new System.Drawing.Size(100, 20);
             this.txtTaxRate.TabIndex = 14;
             this.txtTaxRate.Tag = "rate";
-            this.txtTaxRate.Text = "1.00";
+            this.txtTaxRate.Text = "10.00";
             this.txtTaxRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTaxRate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtTaxRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -270,15 +270,17 @@
             // lblSavingsGoal
             // 
             this.lblSavingsGoal.AutoSize = true;
-            this.lblSavingsGoal.Location = new System.Drawing.Point(762, 41);
+            this.lblSavingsGoal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSavingsGoal.Location = new System.Drawing.Point(762, 67);
             this.lblSavingsGoal.Name = "lblSavingsGoal";
-            this.lblSavingsGoal.Size = new System.Drawing.Size(88, 13);
+            this.lblSavingsGoal.Size = new System.Drawing.Size(105, 13);
             this.lblSavingsGoal.TabIndex = 17;
             this.lblSavingsGoal.Text = "Savings Goal ($):";
             // 
             // txtSavingsGoal
             // 
-            this.txtSavingsGoal.Location = new System.Drawing.Point(955, 38);
+            this.txtSavingsGoal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSavingsGoal.Location = new System.Drawing.Point(955, 64);
             this.txtSavingsGoal.Name = "txtSavingsGoal";
             this.txtSavingsGoal.Size = new System.Drawing.Size(100, 20);
             this.txtSavingsGoal.TabIndex = 15;
@@ -297,7 +299,7 @@
             this.txtIncomeGrowth.Size = new System.Drawing.Size(102, 20);
             this.txtIncomeGrowth.TabIndex = 6;
             this.txtIncomeGrowth.Tag = "rate";
-            this.txtIncomeGrowth.Text = "1.00";
+            this.txtIncomeGrowth.Text = "2.50";
             this.txtIncomeGrowth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtIncomeGrowth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtIncomeGrowth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -323,7 +325,7 @@
             this.txtSpendingFractionGrowth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSpendingFractionGrowth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtSpendingFractionGrowth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
-            this.txtSpendingFractionGrowth.Leave += new System.EventHandler(this.txtAge_Leave);
+            this.txtSpendingFractionGrowth.Leave += new System.EventHandler(this.txtSpendingFractionGrowth_Leave);
             // 
             // txtSavingFractionGrowth
             // 
@@ -336,7 +338,7 @@
             this.txtSavingFractionGrowth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSavingFractionGrowth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtSavingFractionGrowth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
-            this.txtSavingFractionGrowth.Leave += new System.EventHandler(this.txtAge_Leave);
+            this.txtSavingFractionGrowth.Leave += new System.EventHandler(this.txtSpendingFractionGrowth_Leave);
             // 
             // lblFraction
             // 
@@ -378,7 +380,7 @@
             // lblAverageInflation
             // 
             this.lblAverageInflation.AutoSize = true;
-            this.lblAverageInflation.Location = new System.Drawing.Point(762, 67);
+            this.lblAverageInflation.Location = new System.Drawing.Point(762, 41);
             this.lblAverageInflation.Name = "lblAverageInflation";
             this.lblAverageInflation.Size = new System.Drawing.Size(133, 13);
             this.lblAverageInflation.TabIndex = 28;
@@ -386,7 +388,7 @@
             // 
             // txtInflation
             // 
-            this.txtInflation.Location = new System.Drawing.Point(955, 64);
+            this.txtInflation.Location = new System.Drawing.Point(955, 38);
             this.txtInflation.Name = "txtInflation";
             this.txtInflation.Size = new System.Drawing.Size(100, 20);
             this.txtInflation.TabIndex = 16;
@@ -422,11 +424,11 @@
             this.txtStockFraction.Size = new System.Drawing.Size(77, 20);
             this.txtStockFraction.TabIndex = 17;
             this.txtStockFraction.Tag = "rate,fraction";
-            this.txtStockFraction.Text = "50.0";
+            this.txtStockFraction.Text = "90.0";
             this.txtStockFraction.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtStockFraction.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtStockFraction.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
-            this.txtStockFraction.Leave += new System.EventHandler(this.txtAge_Leave);
+            this.txtStockFraction.Leave += new System.EventHandler(this.txtStockFraction_Leave);
             // 
             // txtBondFraction
             // 
@@ -435,11 +437,11 @@
             this.txtBondFraction.Size = new System.Drawing.Size(77, 20);
             this.txtBondFraction.TabIndex = 18;
             this.txtBondFraction.Tag = "rate,fraction";
-            this.txtBondFraction.Text = "50.0";
+            this.txtBondFraction.Text = "10.0";
             this.txtBondFraction.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBondFraction.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtBondFraction.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
-            this.txtBondFraction.Leave += new System.EventHandler(this.txtAge_Leave);
+            this.txtBondFraction.Leave += new System.EventHandler(this.txtStockFraction_Leave);
             // 
             // lblPortfolioBreakdown
             // 
@@ -465,7 +467,7 @@
             this.cboProjection.Items.AddRange(new object[] {
             "Fixed Rate Returns",
             "Monte Carlo Simulations"});
-            this.cboProjection.Location = new System.Drawing.Point(146, 149);
+            this.cboProjection.Location = new System.Drawing.Point(146, 158);
             this.cboProjection.Name = "cboProjection";
             this.cboProjection.Size = new System.Drawing.Size(149, 21);
             this.cboProjection.TabIndex = 19;
@@ -473,7 +475,7 @@
             // lblProjectionMethod
             // 
             this.lblProjectionMethod.AutoSize = true;
-            this.lblProjectionMethod.Location = new System.Drawing.Point(13, 152);
+            this.lblProjectionMethod.Location = new System.Drawing.Point(13, 161);
             this.lblProjectionMethod.Name = "lblProjectionMethod";
             this.lblProjectionMethod.Size = new System.Drawing.Size(96, 13);
             this.lblProjectionMethod.TabIndex = 37;
@@ -482,7 +484,7 @@
             // lblExpectedReturns
             // 
             this.lblExpectedReturns.AutoSize = true;
-            this.lblExpectedReturns.Location = new System.Drawing.Point(329, 152);
+            this.lblExpectedReturns.Location = new System.Drawing.Point(328, 161);
             this.lblExpectedReturns.Name = "lblExpectedReturns";
             this.lblExpectedReturns.Size = new System.Drawing.Size(159, 13);
             this.lblExpectedReturns.TabIndex = 38;
@@ -491,7 +493,7 @@
             // lblBondReturns
             // 
             this.lblBondReturns.AutoSize = true;
-            this.lblBondReturns.Location = new System.Drawing.Point(633, 152);
+            this.lblBondReturns.Location = new System.Drawing.Point(610, 161);
             this.lblBondReturns.Name = "lblBondReturns";
             this.lblBondReturns.Size = new System.Drawing.Size(40, 13);
             this.lblBondReturns.TabIndex = 42;
@@ -500,7 +502,7 @@
             // lblStockReturns
             // 
             this.lblStockReturns.AutoSize = true;
-            this.lblStockReturns.Location = new System.Drawing.Point(495, 152);
+            this.lblStockReturns.Location = new System.Drawing.Point(495, 161);
             this.lblStockReturns.Name = "lblStockReturns";
             this.lblStockReturns.Size = new System.Drawing.Size(43, 13);
             this.lblStockReturns.TabIndex = 41;
@@ -508,12 +510,12 @@
             // 
             // txtStockReturns
             // 
-            this.txtStockReturns.Location = new System.Drawing.Point(544, 149);
+            this.txtStockReturns.Location = new System.Drawing.Point(544, 157);
             this.txtStockReturns.Name = "txtStockReturns";
-            this.txtStockReturns.Size = new System.Drawing.Size(77, 20);
+            this.txtStockReturns.Size = new System.Drawing.Size(56, 20);
             this.txtStockReturns.TabIndex = 20;
             this.txtStockReturns.Tag = "rate";
-            this.txtStockReturns.Text = "7.00";
+            this.txtStockReturns.Text = "7.50";
             this.txtStockReturns.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtStockReturns.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtStockReturns.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -521,12 +523,12 @@
             // 
             // txtBondReturns
             // 
-            this.txtBondReturns.Location = new System.Drawing.Point(679, 149);
+            this.txtBondReturns.Location = new System.Drawing.Point(656, 158);
             this.txtBondReturns.Name = "txtBondReturns";
-            this.txtBondReturns.Size = new System.Drawing.Size(77, 20);
+            this.txtBondReturns.Size = new System.Drawing.Size(56, 20);
             this.txtBondReturns.TabIndex = 21;
             this.txtBondReturns.Tag = "rate";
-            this.txtBondReturns.Text = "3.00";
+            this.txtBondReturns.Text = "2.50";
             this.txtBondReturns.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBondReturns.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtBondReturns.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -542,7 +544,8 @@
             // 
             // btnRun
             // 
-            this.btnRun.Location = new System.Drawing.Point(966, 146);
+            this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRun.Location = new System.Drawing.Point(966, 155);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(89, 23);
             this.btnRun.TabIndex = 22;
@@ -553,7 +556,7 @@
             // line1
             // 
             this.line1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.line1.Location = new System.Drawing.Point(333, 85);
+            this.line1.Location = new System.Drawing.Point(333, 86);
             this.line1.Name = "line1";
             this.line1.Size = new System.Drawing.Size(403, 2);
             this.line1.TabIndex = 45;
