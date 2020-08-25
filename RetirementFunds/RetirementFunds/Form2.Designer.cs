@@ -510,7 +510,7 @@
             // 
             // txtStockReturns
             // 
-            this.txtStockReturns.Location = new System.Drawing.Point(544, 157);
+            this.txtStockReturns.Location = new System.Drawing.Point(545, 158);
             this.txtStockReturns.Name = "txtStockReturns";
             this.txtStockReturns.Size = new System.Drawing.Size(56, 20);
             this.txtStockReturns.TabIndex = 20;
@@ -545,7 +545,7 @@
             // btnRun
             // 
             this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRun.Location = new System.Drawing.Point(966, 155);
+            this.btnRun.Location = new System.Drawing.Point(966, 156);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(89, 23);
             this.btnRun.TabIndex = 22;

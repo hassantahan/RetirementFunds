@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +15,9 @@ namespace RetirementFunds
 {
     public partial class Form2 : Form
     {
+        private float STOCK_RETURN = 0.075f;
+        private float BOND_RETURN = 0.04f;
+
         public Form2()
         {
             InitializeComponent();
@@ -97,6 +102,7 @@ namespace RetirementFunds
             }
         }
 
+        // Calculates the fraction that is being saved.
         private void txtIncome_Leave(object sender, EventArgs e)
         {
             FormControlMethods.FormatTextBox((TextBox)sender);
@@ -110,7 +116,26 @@ namespace RetirementFunds
 
         private void btnRun_Click(object sender, EventArgs e)
         {
+            GenerateReturns();
+            GenerateChart();
+        }
 
+        private void GenerateReturns()
+        {
+
+        }
+
+        private void GenerateChart()
+        {
+            carcInvestment.Series.Add
+            (
+                new LineSeries
+                {
+                    Values = new ChartValues<decimal>(),
+                    LabelPoint = point => point.Y.ToString("C0"),
+                    Title = "",
+                }
+            );
         }
     }
 }

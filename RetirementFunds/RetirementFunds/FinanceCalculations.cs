@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace RetirementFunds
         //Converts a rate with a specific frequency of compounding period to another frequency
         public static float EquivelantRate(float rate, int firstCompound, int secondCompound)
         {
-            return secondCompound * (float)(Math.Pow(1 + rate / firstCompound, firstCompound / secondCompound) - 1);
+            return secondCompound * (float)(Math.Pow(1 + rate / firstCompound, (float)firstCompound / secondCompound) - 1);
         }
 
         //For fixed annuities (i.e. static payments), this finds the future value. startImmediately is if the annuity starts  
@@ -41,9 +42,9 @@ namespace RetirementFunds
                     (decimal)(1 + interest / nCompPeriods * startImmediately);
             }
 
-            interest = EquivelantRate(interest, nCompPeriods, paymentFrequency);
-            return annuity / (decimal)(interest / paymentFrequency) * (decimal)(Math.Pow(1 + interest / paymentFrequency, time * paymentFrequency) - 1) * 
-                (decimal)(1 + interest / paymentFrequency * startImmediately);
+            float a = EquivelantRate(0.01f, 1, 12);
+            return annuity / (decimal)(a / paymentFrequency) * (decimal)(Math.Pow(1 + a / paymentFrequency, time * paymentFrequency) - 1) * 
+                (decimal)(1 + a / paymentFrequency * startImmediately);
         }
 
         //Finds the future value for an annuity where the annuity grows over time. Two different formulas if interest=growth or not.

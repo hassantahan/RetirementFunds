@@ -162,7 +162,7 @@
             this.txtAnnuityPayment.Size = new System.Drawing.Size(100, 20);
             this.txtAnnuityPayment.TabIndex = 6;
             this.txtAnnuityPayment.Tag = "dollar";
-            this.txtAnnuityPayment.Text = "$1 000.00";
+            this.txtAnnuityPayment.Text = "$100.00";
             this.txtAnnuityPayment.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAnnuityPayment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
             this.txtAnnuityPayment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
@@ -209,10 +209,11 @@
             // 
             this.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(611, 418);
+            this.lblTotal.Location = new System.Drawing.Point(527, 418);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(100, 23);
+            this.lblTotal.Size = new System.Drawing.Size(184, 23);
             this.lblTotal.TabIndex = 14;
+            this.lblTotal.Text = "Final Value: ";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // chkPaymentAt
