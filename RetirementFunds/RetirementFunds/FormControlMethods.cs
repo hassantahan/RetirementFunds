@@ -49,7 +49,7 @@ namespace RetirementFunds
             {
                 if (txt.TextLength > 0)
                 {
-                    float temp = float.Parse(txt.Text);
+                    double temp = double.Parse(txt.Text);
                     if (txt.Tag.ToString().Contains("fraction"))
                     {
                         txt.Text = temp.ToString("0.0");

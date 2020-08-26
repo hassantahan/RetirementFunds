@@ -23,7 +23,7 @@ namespace RetirementFunds
         {
             InitializeComponent();
             carcMain.Series = new SeriesCollection();
-            GenerateChart(int.Parse(txtPeriods.Text), float.Parse(txtCompoundingFrequency.Text));
+            GenerateChart(int.Parse(txtPeriods.Text), double.Parse(txtCompoundingFrequency.Text));
             lblTotal.Text = "Final Value: " + CalculatePrincipal(int.Parse(txtPeriods.Text)).ToString("C2");
         }
 
@@ -71,7 +71,7 @@ namespace RetirementFunds
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             int length = int.Parse(txtPeriods.Text);
-            float rate = float.Parse(txtGain.Text) / 100;
+            double rate = double.Parse(txtGain.Text) / 100;
             int frequency = int.Parse(txtCompoundingFrequency.Text);
             decimal total = new decimal();
 
@@ -84,17 +84,17 @@ namespace RetirementFunds
 
             lblTotal.Text = "Final Value: " + total.ToString("C2");
 
-            GenerateChart(length, (float)frequency);
+            GenerateChart(length, (double)frequency);
         }
 
         // Method used to find the future value of the repeated payments.
-        private decimal CalculateAnnuity(float length, float rate)
+        private decimal CalculateAnnuity(double length, double rate)
         {                    
             int frequency = int.Parse(txtCompoundingFrequency.Text);
             decimal payment = decimal.Parse(txtAnnuityPayment.Text, NumberStyles.Currency);
             int immediately = chkPaymentAt.Checked ? 1 : 0;
             int paymentFrequency = int.Parse(txtPaymentFrequency.Text);
-            float growth = float.Parse(txtPaymentGrowth.Text) / 100;
+            double growth = double.Parse(txtPaymentGrowth.Text) / 100;
 
             if (growth == 0)
             {
@@ -107,29 +107,33 @@ namespace RetirementFunds
         }
 
         // Method that is used to exclusivily find the future value of the principal.
-        private decimal CalculatePrincipal(float length)
+        private decimal CalculatePrincipal(double length)
         {
             decimal principal = decimal.Parse(txtPrincipal.Text, NumberStyles.Currency);
-            float rate = float.Parse(txtGain.Text) / 100;
+            double rate = double.Parse(txtGain.Text) / 100;
             int frequency = int.Parse(txtCompoundingFrequency.Text);
 
             return FinanceCalculations.FutureValue(principal, length, rate, frequency);
         }
 
         // Generates the decimal arrays for the chart.
-        private void GenerateChart(int length, float compounds)
+        private void GenerateChart(int length, double compounds)
         {
             length *= (int)compounds;
             length++;
 
-            float rate = float.Parse(txtGain.Text) / 100;
+            double rate = double.Parse(txtGain.Text) / 100;
             decimal principal = decimal.Parse(txtPrincipal.Text, NumberStyles.Currency);
+            double paymentGrowth = double.Parse(txtPaymentGrowth.Text, NumberStyles.Currency);
+            decimal payment = decimal.Parse(txtAnnuityPayment.Text, NumberStyles.Currency);
+            int payFreq = int.Parse(txtPaymentFrequency.Text);
+
             decimal[] seriesAmount = new decimal[length];
             decimal[] paidAmount = new decimal[length];            
 
             for (int i = 0; i < length; i++)
             {
-                float f = i;
+                double f = i;
                 seriesAmount[i] = CalculatePrincipal(f / compounds);
                 paidAmount[i] = principal;
 
@@ -137,21 +141,14 @@ namespace RetirementFunds
                 {
                     seriesAmount[i] += CalculateAnnuity(f / compounds, rate);
 
-                    // Different calculation for principal if growth in payments is 0.
-                    float g = float.Parse(txtPaymentGrowth.Text, NumberStyles.Currency);
-                    decimal payment = decimal.Parse(txtAnnuityPayment.Text, NumberStyles.Currency);
-                    int payFreq = int.Parse(txtPaymentFrequency.Text);
-
-                    if (g == 0f)
+                    // Different calculation for principal if growth in payments is 0.                    
+                    if (paymentGrowth == 0 && i != 0)
                     {
-                        if (i != 0)
-                        {
-                            paidAmount[i] += payFreq / (int)compounds * payment * i;
-                        }
+                        paidAmount[i] += payFreq / (int)compounds * payment * i;
                     }
                     else
                     {
-                        paidAmount[i] += CalculateAnnuity(f / compounds, 0f);
+                        paidAmount[i] += CalculateAnnuity(f / compounds, 0);
                     }
                 }                    
             }
@@ -190,8 +187,9 @@ namespace RetirementFunds
                 {
                     Title = "Value ($)",
                     LabelFormatter = val => val.ToString("C0"),
+                    MinValue = double.Parse(txtPrincipal.Text, NumberStyles.Currency) * 0.999,
                 }
-            ) ;
+            );
         }
 
         // Open Investing Form

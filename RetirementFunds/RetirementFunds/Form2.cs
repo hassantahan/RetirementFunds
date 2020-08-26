@@ -14,10 +14,7 @@ using System.Windows.Forms;
 namespace RetirementFunds
 {
     public partial class Form2 : Form
-    {
-        private float STOCK_RETURN = 0.075f;
-        private float BOND_RETURN = 0.04f;
-
+    {        
         public Form2()
         {
             InitializeComponent();
@@ -42,6 +39,7 @@ namespace RetirementFunds
         private void txtAge_Leave(object sender, EventArgs e)
         {
             FormControlMethods.FormatTextBox((TextBox)sender);
+            txtSavingsGoal.Text = Investing.CalculateGoal(double.Parse(txtWithdrawlRate.Text) / 100, double.Parse(txtTaxRate.Text) / 100, decimal.Parse(txtRetirementSpending.Text, NumberStyles.Currency));
         }
 
         private void txtAge_KeyDown(object sender, KeyEventArgs e)
@@ -68,8 +66,8 @@ namespace RetirementFunds
         {
             FormControlMethods.FormatTextBox((TextBox)sender);
 
-            float savingsFraction = float.Parse(txtSavingFractionGrowth.Text);
-            float spendingFraction = float.Parse(txtSpendingFractionGrowth.Text);
+            double savingsFraction = double.Parse(txtSavingFractionGrowth.Text);
+            double spendingFraction = double.Parse(txtSpendingFractionGrowth.Text);
 
             if (sender.Equals(txtSavingFractionGrowth))
             {
@@ -87,8 +85,8 @@ namespace RetirementFunds
         {
             FormControlMethods.FormatTextBox((TextBox)sender);
 
-            float stockFraction = float.Parse(txtStockFraction.Text);
-            float bondFraction = float.Parse(txtBondFraction.Text);
+            double stockFraction = double.Parse(txtStockFraction.Text);
+            double bondFraction = double.Parse(txtBondFraction.Text);
 
             if (sender.Equals(txtStockFraction))
             {
@@ -100,6 +98,16 @@ namespace RetirementFunds
                 stockFraction = 100f - bondFraction;
                 txtStockFraction.Text = stockFraction.ToString("0.0");
             }
+        }
+
+        private void Form2_Click(object sender, EventArgs e)
+        {
+            txtSavingsGoal.Text = Investing.CalculateGoal(double.Parse(txtWithdrawlRate.Text) / 100, double.Parse(txtTaxRate.Text) / 100, decimal.Parse(txtRetirementSpending.Text, NumberStyles.Currency));
+        }       
+
+        private void chkInflationIncomeGrowthPeg_CheckedChanged(object sender, EventArgs e)
+        {
+            txtSavingsGoal.Text = Investing.CalculateGoal(double.Parse(txtWithdrawlRate.Text) / 100, double.Parse(txtTaxRate.Text) / 100, decimal.Parse(txtRetirementSpending.Text, NumberStyles.Currency));
         }
 
         // Calculates the fraction that is being saved.
@@ -117,25 +125,86 @@ namespace RetirementFunds
         private void btnRun_Click(object sender, EventArgs e)
         {
             GenerateReturns();
-            GenerateChart();
         }
 
         private void GenerateReturns()
         {
+            // 0 = fixed returns, 1 = monte-carlo; TODO: 2 = historical cycles
+            int projectionType = cboProjection.SelectedIndex;
+            int paymentFrequency = Investing.recurringInvestingFrequency;            
 
-        }
+            double bondAllocation = double.Parse(txtBondFraction.Text) / 100;
+            double stockAllocation = double.Parse(txtStockFraction.Text) / 100;
+            double incomeGrowthRate = double.Parse(txtIncomeGrowth.Text) / 100;
+            double savingsGrowthRateFraction = double.Parse(txtSavingFractionGrowth.Text) / 100;
 
-        private void GenerateChart()
+            decimal currentInvestments = decimal.Parse(txtPrincipal.Text, NumberStyles.Currency);
+            decimal initialSavings = decimal.Parse(txtIncome.Text, NumberStyles.Currency) - decimal.Parse(txtSpending.Text, NumberStyles.Currency);
+            decimal goal = decimal.Parse(txtSavingsGoal.Text, NumberStyles.Currency);            
+
+            double savingsGrowthRate = savingsGrowthRateFraction * incomeGrowthRate;            
+
+            if (projectionType == 0)
+            {
+                double averageReturn = Investing.PortfolioWeightedAverageReturn(bondAllocation, stockAllocation);
+                double timeToRetire = Investing.GetTimeToGoal(goal, currentInvestments, initialSavings, averageReturn, savingsGrowthRate);
+                decimal[] values = new decimal[(int)timeToRetire + 5];
+
+                label1.Text = timeToRetire.ToString();
+
+                for (int i = 0; i < (int)timeToRetire + 5; i++)
+                {
+                    values[i] += FinanceCalculations.FutureValue(currentInvestments, i, averageReturn, 365);
+                    if (savingsGrowthRate > 0)
+                    {
+                        values[i] += FinanceCalculations.FutureVariableAnnuityValue(initialSavings, i, averageReturn, savingsGrowthRate, 365, 0, paymentFrequency);
+                    }
+                    else
+                    {
+                        FinanceCalculations.FutureFixedAnnuityValue(initialSavings, timeToRetire, averageReturn, 365, 0, paymentFrequency);
+                    }
+                }
+
+                GenerateChart(values);
+            }
+        }              
+
+        private void GenerateChart(decimal[] values)
         {
+            int currentAge = int.Parse(txtAge.Text);
+            carcInvestment.Series.Clear();
+
             carcInvestment.Series.Add
             (
                 new LineSeries
                 {
-                    Values = new ChartValues<decimal>(),
+                    Values = new ChartValues<decimal>(values),
                     LabelPoint = point => point.Y.ToString("C0"),
-                    Title = "",
+                    Title = "Money",
                 }
             );
-        }
+
+            carcInvestment.AxisX.Clear();
+            carcInvestment.AxisY.Clear();
+
+            carcInvestment.AxisX.Add
+            (
+                new Axis
+                {
+                    Title = "Years",
+                    LabelFormatter = val => (val + currentAge).ToString(),
+                }
+            );
+
+            carcInvestment.AxisY.Add
+            (
+                new Axis
+                {
+                    Title = "Value ($)",
+                    LabelFormatter = val => val.ToString("C0"),
+                    MinValue = double.Parse(txtPrincipal.Text, NumberStyles.Currency) * 0.999,
+                }
+            );
+        }        
     }
 }

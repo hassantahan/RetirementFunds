@@ -73,6 +73,7 @@
             this.line2 = new System.Windows.Forms.Label();
             this.btnRun = new System.Windows.Forms.Button();
             this.line1 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblAge
@@ -109,7 +110,7 @@
             this.txtPrincipal.Size = new System.Drawing.Size(100, 20);
             this.txtPrincipal.TabIndex = 2;
             this.txtPrincipal.Tag = "dollar";
-            this.txtPrincipal.Text = "$1 000.00";
+            this.txtPrincipal.Text = "0";
             this.txtPrincipal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPrincipal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtPrincipal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -154,9 +155,9 @@
             // 
             // txtSavings
             // 
-            this.txtSavings.Enabled = false;
             this.txtSavings.Location = new System.Drawing.Point(177, 116);
             this.txtSavings.Name = "txtSavings";
+            this.txtSavings.ReadOnly = true;
             this.txtSavings.Size = new System.Drawing.Size(117, 20);
             this.txtSavings.TabIndex = 5;
             this.txtSavings.Tag = "dollar";
@@ -216,12 +217,14 @@
             // chkInflationRetirementSpendingPeg
             // 
             this.chkInflationRetirementSpendingPeg.AutoSize = true;
+            this.chkInflationRetirementSpendingPeg.Enabled = false;
             this.chkInflationRetirementSpendingPeg.Location = new System.Drawing.Point(613, 92);
             this.chkInflationRetirementSpendingPeg.Name = "chkInflationRetirementSpendingPeg";
             this.chkInflationRetirementSpendingPeg.Size = new System.Drawing.Size(97, 17);
             this.chkInflationRetirementSpendingPeg.TabIndex = 11;
             this.chkInflationRetirementSpendingPeg.Text = "Peg to Inflation";
             this.chkInflationRetirementSpendingPeg.UseVisualStyleBackColor = true;
+            this.chkInflationRetirementSpendingPeg.CheckedChanged += new System.EventHandler(this.chkInflationIncomeGrowthPeg_CheckedChanged);
             // 
             // txtWithdrawlRate
             // 
@@ -282,15 +285,12 @@
             this.txtSavingsGoal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSavingsGoal.Location = new System.Drawing.Point(955, 64);
             this.txtSavingsGoal.Name = "txtSavingsGoal";
+            this.txtSavingsGoal.ReadOnly = true;
             this.txtSavingsGoal.Size = new System.Drawing.Size(100, 20);
             this.txtSavingsGoal.TabIndex = 15;
             this.txtSavingsGoal.Tag = "dollar";
             this.txtSavingsGoal.Text = "$1 000.00";
             this.txtSavingsGoal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSavingsGoal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
-            this.txtSavingsGoal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
-            this.txtSavingsGoal.Leave += new System.EventHandler(this.txtAge_Leave);
-            this.txtSavingsGoal.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtPrincipal_PreviewKeyDown);
             // 
             // txtIncomeGrowth
             // 
@@ -370,12 +370,14 @@
             // chkInflationIncomeGrowthPeg
             // 
             this.chkInflationIncomeGrowthPeg.AutoSize = true;
+            this.chkInflationIncomeGrowthPeg.Enabled = false;
             this.chkInflationIncomeGrowthPeg.Location = new System.Drawing.Point(613, 14);
             this.chkInflationIncomeGrowthPeg.Name = "chkInflationIncomeGrowthPeg";
             this.chkInflationIncomeGrowthPeg.Size = new System.Drawing.Size(130, 17);
             this.chkInflationIncomeGrowthPeg.TabIndex = 7;
             this.chkInflationIncomeGrowthPeg.Text = "In Excess of Inflation?";
             this.chkInflationIncomeGrowthPeg.UseVisualStyleBackColor = true;
+            this.chkInflationIncomeGrowthPeg.CheckedChanged += new System.EventHandler(this.chkInflationIncomeGrowthPeg_CheckedChanged);
             // 
             // lblAverageInflation
             // 
@@ -388,6 +390,7 @@
             // 
             // txtInflation
             // 
+            this.txtInflation.Enabled = false;
             this.txtInflation.Location = new System.Drawing.Point(955, 38);
             this.txtInflation.Name = "txtInflation";
             this.txtInflation.Size = new System.Drawing.Size(100, 20);
@@ -561,11 +564,21 @@
             this.line1.Size = new System.Drawing.Size(403, 2);
             this.line1.TabIndex = 45;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(770, 156);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 46;
+            this.label1.Text = "label1";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 557);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.line1);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.line2);
@@ -616,6 +629,7 @@
             this.Name = "Form2";
             this.Text = "Retirement Funds";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form2_FormClosed);
+            this.Click += new System.EventHandler(this.Form2_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -668,5 +682,6 @@
         private System.Windows.Forms.Label line2;
         private System.Windows.Forms.Button btnRun;
         private System.Windows.Forms.Label line1;
+        private System.Windows.Forms.Label label1;
     }
 }
