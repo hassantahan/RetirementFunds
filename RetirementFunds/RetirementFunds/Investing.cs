@@ -11,15 +11,12 @@ namespace RetirementFunds
     //customization when it comes to contribuitions.
     public static class Investing
     {
-        public static int recurringInvestingFrequency = 1;
-
-        private static double STOCK_RETURN = 0.075;
-        private static double BOND_RETURN = 0.04;
+        public static int recurringInvestingFrequency = 1;        
         private static double TIME_STEP = 0.01;
 
-        public static double PortfolioWeightedAverageReturn(double bondFraction, double stockFraction)
+        public static double PortfolioWeightedAverageReturn(double bondFraction, double stockFraction, double bondReturns, double stockReturns)
         {
-            return bondFraction * BOND_RETURN + stockFraction * STOCK_RETURN;
+            return bondFraction * bondReturns + stockFraction * stockReturns;
         }
 
 
@@ -36,11 +33,11 @@ namespace RetirementFunds
 
                 if (savingsGrowth > 0)
                 {
-                    m += FinanceCalculations.FutureVariableAnnuityValue(payment, time, growth, savingsGrowth, 365, 0, Investing.recurringInvestingFrequency);
+                    m += FinanceCalculations.FutureVariableAnnuityValue(payment, time, growth, savingsGrowth, 365, 0, recurringInvestingFrequency);
                 }
                 else
                 {
-                    m += FinanceCalculations.FutureFixedAnnuityValue(payment, time, growth, 365, 0, Investing.recurringInvestingFrequency);
+                    m += FinanceCalculations.FutureFixedAnnuityValue(payment, time, growth, 365, 0, recurringInvestingFrequency);
                 }
 
                 time += TIME_STEP;

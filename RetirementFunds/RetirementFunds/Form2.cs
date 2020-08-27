@@ -19,6 +19,7 @@ namespace RetirementFunds
         {
             InitializeComponent();
             cboProjection.SelectedIndex = 0;
+            GenerateReturns();
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
@@ -103,6 +104,7 @@ namespace RetirementFunds
         private void Form2_Click(object sender, EventArgs e)
         {
             txtSavingsGoal.Text = Investing.CalculateGoal(double.Parse(txtWithdrawlRate.Text) / 100, double.Parse(txtTaxRate.Text) / 100, decimal.Parse(txtRetirementSpending.Text, NumberStyles.Currency));
+            
         }       
 
         private void chkInflationIncomeGrowthPeg_CheckedChanged(object sender, EventArgs e)
@@ -125,11 +127,10 @@ namespace RetirementFunds
         private void btnRun_Click(object sender, EventArgs e)
         {
             GenerateReturns();
-        }
-
+        }        
+       
         private void GenerateReturns()
-        {
-            // 0 = fixed returns, 1 = monte-carlo; TODO: 2 = historical cycles
+        {            
             int projectionType = cboProjection.SelectedIndex;
             int paymentFrequency = Investing.recurringInvestingFrequency;            
 
@@ -137,42 +138,80 @@ namespace RetirementFunds
             double stockAllocation = double.Parse(txtStockFraction.Text) / 100;
             double incomeGrowthRate = double.Parse(txtIncomeGrowth.Text) / 100;
             double savingsGrowthRateFraction = double.Parse(txtSavingFractionGrowth.Text) / 100;
+            double bReturns = double.Parse(txtBondReturns.Text) / 100;
+            double sReturns = double.Parse(txtStockReturns.Text) / 100;
+            double averageReturn = Investing.PortfolioWeightedAverageReturn(bondAllocation, stockAllocation, bReturns, sReturns);
 
             decimal currentInvestments = decimal.Parse(txtPrincipal.Text, NumberStyles.Currency);
             decimal initialSavings = decimal.Parse(txtIncome.Text, NumberStyles.Currency) - decimal.Parse(txtSpending.Text, NumberStyles.Currency);
             decimal goal = decimal.Parse(txtSavingsGoal.Text, NumberStyles.Currency);            
 
-            double savingsGrowthRate = savingsGrowthRateFraction * incomeGrowthRate;            
+            double savingsGrowthRate = savingsGrowthRateFraction * incomeGrowthRate;
+            double timeToRetire = new double();
 
+            // 0 = fixed returns, 1 = monte-carlo; TODO: 2 = historical cycles
             if (projectionType == 0)
             {
-                double averageReturn = Investing.PortfolioWeightedAverageReturn(bondAllocation, stockAllocation);
-                double timeToRetire = Investing.GetTimeToGoal(goal, currentInvestments, initialSavings, averageReturn, savingsGrowthRate);
-                decimal[] values = new decimal[(int)timeToRetire + 5];
+                //Fixed Returns
+                timeToRetire = Investing.GetTimeToGoal(goal, currentInvestments, initialSavings, averageReturn, savingsGrowthRate);
 
-                label1.Text = timeToRetire.ToString();
+                decimal[] total = new decimal[(int)timeToRetire + 5];
+                decimal[] returns = new decimal[(int)timeToRetire + 5];
+                decimal[] principal = new decimal[(int)timeToRetire + 5];                               
 
                 for (int i = 0; i < (int)timeToRetire + 5; i++)
                 {
-                    values[i] += FinanceCalculations.FutureValue(currentInvestments, i, averageReturn, 365);
+                    principal[i] += currentInvestments;
+                    total[i] += FinanceCalculations.FutureValue(currentInvestments, i, averageReturn, 365);
+       
                     if (savingsGrowthRate > 0)
                     {
-                        values[i] += FinanceCalculations.FutureVariableAnnuityValue(initialSavings, i, averageReturn, savingsGrowthRate, 365, 0, paymentFrequency);
+                        total[i] += FinanceCalculations.FutureVariableAnnuityValue(initialSavings, i, averageReturn, savingsGrowthRate, 365, 0, paymentFrequency);
+                        principal[i] += FinanceCalculations.FutureVariableAnnuityValue(initialSavings, i, 0, savingsGrowthRate, 365, 0, paymentFrequency);
                     }
                     else
                     {
-                        FinanceCalculations.FutureFixedAnnuityValue(initialSavings, timeToRetire, averageReturn, 365, 0, paymentFrequency);
+                        total[i] += FinanceCalculations.FutureFixedAnnuityValue(initialSavings, timeToRetire, averageReturn, 365, 0, paymentFrequency);
+                        principal[i] += initialSavings * i;
                     }
+                    returns[i] = total[i] - principal[i];
                 }
 
-                GenerateChart(values);
+                carcInvestment.Series.Clear();
+                GenerateChart(total, "Total");
+                GenerateChart(returns, "Return");
+                GenerateChart(principal, "Principal");                
             }
-        }              
+            else if (projectionType == 1)
+            {
+                //Monte-Carlo
+                int simulations = 10000;
+                double stockVolatility = 0.204;
+                double bondVolatility = 0.02;
 
-        private void GenerateChart(decimal[] values)
+
+                for (int i = 0; i < simulations; i++)
+                {
+                    do
+                    {
+                        
+                    } while (true);
+                }
+            }
+
+            PrintResults(timeToRetire);
+        }
+
+        private void PrintResults(double time)
         {
             int currentAge = int.Parse(txtAge.Text);
-            carcInvestment.Series.Clear();
+
+            lblResults.Text = "It will take you " + time.ToString("0.0") + "  to reach your goal at age " + ((int)time + currentAge).ToString() + ".";
+        }
+
+        private void GenerateChart(decimal[] values, string name)
+        {
+            int currentAge = int.Parse(txtAge.Text);            
 
             carcInvestment.Series.Add
             (
@@ -180,7 +219,7 @@ namespace RetirementFunds
                 {
                     Values = new ChartValues<decimal>(values),
                     LabelPoint = point => point.Y.ToString("C0"),
-                    Title = "Money",
+                    Title = name + ": ",
                 }
             );
 
@@ -205,6 +244,7 @@ namespace RetirementFunds
                     MinValue = double.Parse(txtPrincipal.Text, NumberStyles.Currency) * 0.999,
                 }
             );
-        }        
+        }
+
     }
 }
