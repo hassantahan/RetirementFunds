@@ -74,6 +74,7 @@
             this.line1 = new System.Windows.Forms.Label();
             this.lblResults = new System.Windows.Forms.Label();
             this.carcInvestment = new LiveCharts.WinForms.CartesianChart();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblAge
@@ -110,7 +111,7 @@
             this.txtPrincipal.Size = new System.Drawing.Size(100, 20);
             this.txtPrincipal.TabIndex = 2;
             this.txtPrincipal.Tag = "dollar";
-            this.txtPrincipal.Text = "$1 000.00";
+            this.txtPrincipal.Text = "$0.00";
             this.txtPrincipal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPrincipal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtPrincipal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -574,11 +575,20 @@
             this.carcInvestment.TabIndex = 35;
             this.carcInvestment.Text = "cartesianChart1";
             // 
+            // label1
+            // 
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Location = new System.Drawing.Point(795, 151);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 47;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 557);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblResults);
             this.Controls.Add(this.line1);
             this.Controls.Add(this.btnRun);
@@ -684,5 +694,6 @@
         private System.Windows.Forms.Label line1;
         private System.Windows.Forms.Label lblResults;
         private LiveCharts.WinForms.CartesianChart carcInvestment;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -19,3 +19,6 @@ M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\Retir
 M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.WinForms.pdb
 M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.WinForms.xml
 M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.Form2.resources
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\Meta.Numerics.dll
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\Meta.Numerics.pdb
+M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\Meta.Numerics.xml

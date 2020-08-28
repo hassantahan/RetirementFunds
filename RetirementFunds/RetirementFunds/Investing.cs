@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Meta.Numerics.Statistics.Distributions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,11 +47,26 @@ namespace RetirementFunds
             return time;
         }
 
+        // Simple method used to calculate the financial goal.
         public static string CalculateGoal(double withdrawlRate, double taxRate, decimal retirementSpeding)
         {
             decimal goal = retirementSpeding * (decimal)((1 + taxRate) / withdrawlRate);
 
             return goal.ToString("C2");
+        }
+
+        // Uses the inverse CDF to calculate a random return for a portfolio with inputs of a standard deviaton (represented as volatility),
+        // mean return, and the allocation, all for each specific asset allocation.
+        public static double CalculateRandomPortfolioReturn(double bondReturns, double bondVolatility, double bondAllocation, double stockReturns, double stockVolatility, double stockAllocation)
+        {
+            Random r = new Random();
+            NormalDistribution bondDistrubtion = new NormalDistribution(bondReturns, bondVolatility);
+            NormalDistribution stockDistrubtion = new NormalDistribution(stockReturns, stockVolatility);
+
+            double randomBondReturn = bondDistrubtion.InverseLeftProbability(r.NextDouble());
+            double randomStockReturn = stockDistrubtion.InverseLeftProbability(r.NextDouble());
+
+            return PortfolioWeightedAverageReturn(bondAllocation, stockAllocation, randomBondReturn, randomStockReturn); ;
         }
     }
 }

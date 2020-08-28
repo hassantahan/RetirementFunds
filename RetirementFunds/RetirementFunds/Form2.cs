@@ -1,5 +1,6 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
+using Meta.Numerics.Statistics.Distributions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -149,6 +151,8 @@ namespace RetirementFunds
             double savingsGrowthRate = savingsGrowthRateFraction * incomeGrowthRate;
             double timeToRetire = new double();
 
+            carcInvestment.Series.Clear();
+
             // 0 = fixed returns, 1 = monte-carlo; TODO: 2 = historical cycles
             if (projectionType == 0)
             {
@@ -176,8 +180,7 @@ namespace RetirementFunds
                     }
                     returns[i] = total[i] - principal[i];
                 }
-
-                carcInvestment.Series.Clear();
+                label1.Text = timeToRetire.ToString("0.00");
                 GenerateChart(total, "Total");
                 GenerateChart(returns, "Return");
                 GenerateChart(principal, "Principal");                
@@ -185,21 +188,60 @@ namespace RetirementFunds
             else if (projectionType == 1)
             {
                 //Monte-Carlo
-                int simulations = 10000;
-                double stockVolatility = 0.204;
-                double bondVolatility = 0.02;
+                int simulations = 10;
+                double stockVolatility = 0.2;
+                double bondVolatility = 0.03;
 
+                List<decimal>[] stats = new List<decimal>[simulations];
+                //decimal[,] percentiles = new decimal[simulations, 5];
 
-                for (int i = 0; i < simulations; i++)
+                //for (int i = 0; i < simulations; i++)
+                //{
+                //    stats[i] = new List<decimal>();
+                //}
+
+                for (int i = 0; i < 1; i++)
                 {
+                    List<decimal> po = new List<decimal>();
+                    po.Add(currentInvestments);                    
+
                     do
                     {
+                        // Randomly generated return of the portfolio
+                        double pReturn = Investing.CalculateRandomPortfolioReturn(bReturns, bondVolatility, bondAllocation, sReturns, stockVolatility, stockAllocation);
+                        decimal x = po.Last();
+                        int k = 0;
+
+                        if (savingsGrowthRate > 0)
+                        {
+                            x *= (1 + (decimal)pReturn);
+                            x += FinanceCalculations.FutureValue(initialSavings, k, savingsGrowthRate, 1);                            
+                            k++;
+                        }
+                        else
+                        {
+                            x *= (1 + (decimal)pReturn); 
+                            x += initialSavings;
+                        }
+
+                        po.Add(x);
+                        //stats[i].Add(x);
                         
-                    } while (true);
+                        Thread.Sleep(1);
+                    } while ((po.Last() <= 1.05m * goal) || po.Count < 60);
+
+                    decimal[] bl = new decimal[po.Count];
+                    bl = po.ToArray();
+                    GenerateChart(bl, "returns");
                 }
+
+                //for (int i = 0; i < simulations; i++)
+                //{
+
+                //}
             }
 
-            PrintResults(timeToRetire);
+            //PrintResults(timeToRetire);
         }
 
         private void PrintResults(double time)
