@@ -13,7 +13,8 @@ namespace RetirementFunds
     public static class Investing
     {
         public static int recurringInvestingFrequency = 1;        
-        private static double TIME_STEP = 0.01;
+        private static double TIME_STEP = 0.001;
+        private static double RATE_STEP = 0.0001;
 
         public static double PortfolioWeightedAverageReturn(double bondFraction, double stockFraction, double bondReturns, double stockReturns)
         {
@@ -47,6 +48,28 @@ namespace RetirementFunds
             return time;
         }
 
+        // An interative function that finds the rate to meet the goal within a given time.
+        public static double GetRateOfGrowth(decimal goal, decimal startingBal, decimal initialSavings, double growth, double time)
+        {
+            decimal bal = 0;
+            double rate = RATE_STEP;
+            while (bal < goal)
+            {
+                bal = FinanceCalculations.FutureValue(startingBal, time, rate, 365);
+                if (growth > 0)
+                {
+                    bal += FinanceCalculations.FutureVariableAnnuityValue(initialSavings, time, rate, growth, 365, 0, recurringInvestingFrequency);
+                }
+                else
+                {
+                    bal += FinanceCalculations.FutureFixedAnnuityValue(initialSavings, time, rate, 365, 0, recurringInvestingFrequency);
+                }
+                rate += RATE_STEP;
+            }
+
+            return rate;
+        }
+
         // Simple method used to calculate the financial goal.
         public static string CalculateGoal(double withdrawlRate, double taxRate, decimal retirementSpeding)
         {
@@ -67,6 +90,6 @@ namespace RetirementFunds
             double randomStockReturn = stockDistrubtion.InverseLeftProbability(r.NextDouble());
 
             return PortfolioWeightedAverageReturn(bondAllocation, stockAllocation, randomBondReturn, randomStockReturn); ;
-        }
+        }        
     }
 }

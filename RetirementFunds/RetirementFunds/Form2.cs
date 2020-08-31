@@ -132,7 +132,8 @@ namespace RetirementFunds
         }        
        
         private void GenerateReturns()
-        {            
+        {       
+            // Set parameters
             int projectionType = cboProjection.SelectedIndex;
             int paymentFrequency = Investing.recurringInvestingFrequency;            
 
@@ -142,29 +143,29 @@ namespace RetirementFunds
             double savingsGrowthRateFraction = double.Parse(txtSavingFractionGrowth.Text) / 100;
             double bReturns = double.Parse(txtBondReturns.Text) / 100;
             double sReturns = double.Parse(txtStockReturns.Text) / 100;
-            double averageReturn = Investing.PortfolioWeightedAverageReturn(bondAllocation, stockAllocation, bReturns, sReturns);
+            double savingsGrowthRate = savingsGrowthRateFraction * incomeGrowthRate;
 
             decimal currentInvestments = decimal.Parse(txtPrincipal.Text, NumberStyles.Currency);
             decimal initialSavings = decimal.Parse(txtIncome.Text, NumberStyles.Currency) - decimal.Parse(txtSpending.Text, NumberStyles.Currency);
-            decimal goal = decimal.Parse(txtSavingsGoal.Text, NumberStyles.Currency);            
-
-            double savingsGrowthRate = savingsGrowthRateFraction * incomeGrowthRate;
-            double timeToRetire = new double();
+            decimal goal = decimal.Parse(txtSavingsGoal.Text, NumberStyles.Currency);                                   
 
             carcInvestment.Series.Clear();
 
             // 0 = fixed returns, 1 = monte-carlo; TODO: 2 = historical cycles
             if (projectionType == 0)
             {
-                //Fixed Returns
-                timeToRetire = Investing.GetTimeToGoal(goal, currentInvestments, initialSavings, averageReturn, savingsGrowthRate);
+                // Fixed Returns
+
+                double averageReturn = Investing.PortfolioWeightedAverageReturn(bondAllocation, stockAllocation, bReturns, sReturns);
+                double timeToRetire = Investing.GetTimeToGoal(goal, currentInvestments, initialSavings, averageReturn, savingsGrowthRate);
 
                 decimal[] total = new decimal[(int)timeToRetire + 5];
                 decimal[] returns = new decimal[(int)timeToRetire + 5];
                 decimal[] principal = new decimal[(int)timeToRetire + 5];                               
 
+                // Generate return arrays
                 for (int i = 0; i < (int)timeToRetire + 5; i++)
-                {
+                {                    
                     principal[i] += currentInvestments;
                     total[i] += FinanceCalculations.FutureValue(currentInvestments, i, averageReturn, 365);
        
@@ -175,125 +176,92 @@ namespace RetirementFunds
                     }
                     else
                     {
-                        total[i] += FinanceCalculations.FutureFixedAnnuityValue(initialSavings, timeToRetire, averageReturn, 365, 0, paymentFrequency);
+                        total[i] += FinanceCalculations.FutureFixedAnnuityValue(initialSavings, i, averageReturn, 365, 0, paymentFrequency);
                         principal[i] += initialSavings * i;
                     }
                     returns[i] = total[i] - principal[i];
                 }
-                label1.Text = timeToRetire.ToString("0.00");
+
                 GenerateChart(total, "Total");
                 GenerateChart(returns, "Return");
                 GenerateChart(principal, "Principal");                
             }
             else if (projectionType == 1)
             {
-                //Monte-Carlo
-                int simulations = 10;
-                int tenthPercentileLength = 0;
-                decimal[] lengths = new decimal[simulations];
-                double stockVolatility = 0.2;
+                // Monte-Carlo
+
+                int simulations = 500;
+                double stockVolatility = 0.21;
                 double bondVolatility = 0.03;
 
-                List<decimal>[] stats = new List<decimal>[simulations];                
+                double[] percentileList = { 0.9, 0.75, 0.5, 0.25, 0.1 };
+                double[] lengths = new double[simulations];
+                double[] percentileLengths = new double[percentileList.Length];
+                double[] averageRatesOfGrowth = new double[percentileList.Length];
+                
+                decimal[][] percentileReturns = new decimal[percentileList.Length][];
 
-                //Initialize stats
+                //Run the simulations to find lengths
                 for (int i = 0; i < simulations; i++)
                 {
-                    stats[i] = new List<decimal>();
-                }
+                    decimal x = currentInvestments;
 
-                //Run the simulations once
-                for (int i = 0; i < simulations; i++)
-                {
-                    List<decimal> po = new List<decimal>();
-                    po.Add(currentInvestments);
-
-                    while (po.Last() < goal)
-                    {
+                    while (x < goal)
+                    {                        
                         // Randomly generated return of the portfolio
                         double pReturn = Investing.CalculateRandomPortfolioReturn(bReturns, bondVolatility, bondAllocation, sReturns, stockVolatility, stockAllocation);
-                        decimal x = po.Last();                        
+                        
+                        // Caluculate portfolio value at the end of the year
+                        x *= 1 + (decimal)pReturn;
 
-                        x *= (1 + (decimal)pReturn);
-
+                        // Add savings to portfolio
                         if (savingsGrowthRate > 0)
                         {
-                            x += FinanceCalculations.FutureValue(initialSavings, (double)lengths[i], savingsGrowthRate, 1);                            
+                            x += FinanceCalculations.FutureValue(initialSavings, lengths[i], savingsGrowthRate, 1);
                         }
                         else
-                        {                             
-                            x += initialSavings;
+                        {
+                            x += initialSavings * i;
                         }
-
-                        po.Add(x);
-                        stats[i].Add(x);
                         
-                        Thread.Sleep(3);
                         lengths[i]++;
-                    }                
-                }
+                    }
 
-                tenthPercentileLength = (int)Math.Round(FinanceCalculations.Percentile(lengths, 0.5m) * 1.05m) ;
+                    Thread.Sleep(3);
+                }                
 
-                //Run simulations again such that they are the same length
-                for (int i = 0; i < simulations; i++)
-                {
-                    lengths[i] = 0;
-                    List<decimal> po = stats[i];
+                for (int i = 0; i < percentileList.Length; i++) 
+                {      
+                    // Get length percentiles
+                    percentileLengths[i] = FinanceCalculations.Percentile(lengths, percentileList[i]) * 1.05;
 
-                    while (po.Count < tenthPercentileLength)
+                    // Find equivelant growth rate
+                    averageRatesOfGrowth[i] = Investing.GetRateOfGrowth(goal, currentInvestments, initialSavings, savingsGrowthRate, percentileLengths[i]);
+
+                    // Initialize the array with the 90th percentile in length + 2
+                    percentileReturns[i] = new decimal[(int)percentileLengths[0] + 2];
+
+                    //Calculate return array
+                    for (int j = 0; j < (int)percentileLengths[0] + 2; j++)
                     {
-                        RollAgain:
-                        // Randomly generated return of the portfolio
-                        double pReturn = Investing.CalculateRandomPortfolioReturn(bReturns, bondVolatility, bondAllocation, sReturns, stockVolatility, stockAllocation);
-                        decimal x = po.Last();   
-                        
-                        x *= (1 + (decimal)pReturn);
-
-                        if (x < goal)
-                            goto RollAgain;
+                        percentileReturns[i][j] += FinanceCalculations.FutureValue(currentInvestments, j, averageRatesOfGrowth[i], 365);
 
                         if (savingsGrowthRate > 0)
                         {
-                            x += FinanceCalculations.FutureValue(initialSavings, (double)lengths[i], savingsGrowthRate, 1);
+                            percentileReturns[i][j] += FinanceCalculations.FutureVariableAnnuityValue(initialSavings, j, averageRatesOfGrowth[i], savingsGrowthRate, 365, 0, paymentFrequency);
                         }
                         else
                         {
-                            x += initialSavings;
+                            percentileReturns[i][j] += FinanceCalculations.FutureFixedAnnuityValue(initialSavings, j, averageRatesOfGrowth[i], 365, 0, paymentFrequency);
                         }
-
-                        po.Add(x);
-                        stats[i].Add(x);
-
-                        Thread.Sleep(3);
-                    }                                                                                                
-                }
-
-                decimal[][] arrayOfResults = new decimal[tenthPercentileLength][]; //length of simulations
-                decimal[] percentileList = { 0.1m, 0.25m, 0.5m, 0.75m, 0.9m };
-                decimal[][] percentiles = new decimal[percentileList.Length][]; //length of maxCount
-
-                for (int i = 0; i < tenthPercentileLength; i++)
-                {
-                    arrayOfResults[i] = new decimal[simulations];
-
-                    for (int j = 0; j < simulations; j++)
-                    {
-                        arrayOfResults[i][j] = stats[j][i];
                     }                    
                 }
 
-                for (int i = 0; i < percentileList.Length; i++)
+                for (int i = 0; i < percentileLengths.Length; i++)
                 {
-                    percentiles[i] = new decimal[tenthPercentileLength];
-                    int t = percentileList.Length - i - 1;
-                    for (int j = 0; j < tenthPercentileLength; j++)
-                    {
-                        percentiles[i][j] = FinanceCalculations.Percentile(arrayOfResults[j], percentileList[t]);
-                    }
-
-                    GenerateChart(percentiles[i], (100 * percentileList[t]).ToString("0") + "th Percentile Returns");
-                }   
+                    int k = percentileList.Length - i - 1;
+                    GenerateChart(percentileReturns[k], (100 * percentileList[i]).ToString("0") + "th Percentile Returns");
+                }                  
             }
 
             //PrintResults(timeToRetire);

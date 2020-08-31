@@ -74,38 +74,21 @@ namespace RetirementFunds
                 (decimal)(1 + interest / paymentFrequency * startImmediately);
         }
 
-        public static decimal Percentile(decimal[] sequence, decimal excelPercentile)
+        //Returns the percentile from an array of decimals
+        public static double Percentile(double[] sequence, double excelPercentile)
         {
             Array.Sort(sequence);
             int N = sequence.Length;
-            decimal n = (N - 1) * excelPercentile + 1;
+            double n = (N - 1) * excelPercentile + 1;
             // Another method: double n = (N + 1) * excelPercentile;
-            if (n == 1m) return sequence[0];
+            if (n == 1) return sequence[0];
             else if (n == N) return sequence[N - 1];
             else
             {
                 int k = (int)n;
-                decimal d = n - k;
+                double d = n - k;
                 return sequence[k - 1] + d * (sequence[k] - sequence[k - 1]);
             }
-        }
-
-        public static decimal[,] Transpose(decimal[,] matrix)
-        {
-            int w = matrix.GetLength(0);
-            int h = matrix.GetLength(1);
-
-            decimal[,] result = new decimal[h, w];
-
-            for (int i = 0; i < w; i++)
-            {
-                for (int j = 0; j < h; j++)
-                {
-                    result[j, i] = matrix[i, j];
-                }
-            }
-
-            return result;
         }        
     }
 }
