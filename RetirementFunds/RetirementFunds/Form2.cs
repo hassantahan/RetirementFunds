@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 namespace RetirementFunds
 {
@@ -184,13 +185,13 @@ namespace RetirementFunds
 
                 GenerateChart(total, "Total");
                 GenerateChart(returns, "Return");
-                GenerateChart(principal, "Principal");                
+                GenerateChart(principal, "Principal", goal);                
             }
             else if (projectionType == 1)
             {
                 // Monte-Carlo
 
-                int simulations = 500;
+                int simulations = 50000;
                 double stockVolatility = 0.21;
                 double bondVolatility = 0.03;
 
@@ -205,11 +206,12 @@ namespace RetirementFunds
                 for (int i = 0; i < simulations; i++)
                 {
                     decimal x = currentInvestments;
+                    Random r = new Random(DateTime.Now.Ticks.GetHashCode());
 
                     while (x < goal)
                     {                        
                         // Randomly generated return of the portfolio
-                        double pReturn = Investing.CalculateRandomPortfolioReturn(bReturns, bondVolatility, bondAllocation, sReturns, stockVolatility, stockAllocation);
+                        double pReturn = Investing.CalculateRandomPortfolioReturn(bReturns, bondVolatility, bondAllocation, sReturns, stockVolatility, stockAllocation, r);
                         
                         // Caluculate portfolio value at the end of the year
                         x *= 1 + (decimal)pReturn;
@@ -223,17 +225,16 @@ namespace RetirementFunds
                         {
                             x += initialSavings * i;
                         }
-                        
-                        lengths[i]++;
-                    }
 
-                    Thread.Sleep(3);
+                        //Thread.Sleep(1);
+                        lengths[i]++;
+                    }                    
                 }                
 
                 for (int i = 0; i < percentileList.Length; i++) 
                 {      
                     // Get length percentiles
-                    percentileLengths[i] = FinanceCalculations.Percentile(lengths, percentileList[i]) * 1.05;
+                    percentileLengths[i] = FinanceCalculations.Percentile(lengths, percentileList[i]);
 
                     // Find equivelant growth rate
                     averageRatesOfGrowth[i] = Investing.GetRateOfGrowth(goal, currentInvestments, initialSavings, savingsGrowthRate, percentileLengths[i]);
@@ -260,8 +261,17 @@ namespace RetirementFunds
                 for (int i = 0; i < percentileLengths.Length; i++)
                 {
                     int k = percentileList.Length - i - 1;
-                    GenerateChart(percentileReturns[k], (100 * percentileList[i]).ToString("0") + "th Percentile Returns");
-                }                  
+                    GenerateChart(percentileReturns[k], (100 * percentileList[i]).ToString("0") + "th Percentile Returns", goal);
+                }
+
+                decimal[] g = new decimal[(int)percentileLengths[0]];
+                for (int i = 0; i < g.Length; i++)
+                {
+                    g[i] = goal;
+                }
+
+                //SectionsCollection axisSection = new SectionsCollection();               
+                //GenerateChart(g, "Goal", true);
             }
 
             //PrintResults(timeToRetire);
@@ -274,7 +284,7 @@ namespace RetirementFunds
             lblResults.Text = "It will take you " + time.ToString("0.0") + "  to reach your goal at age " + ((int)time + currentAge).ToString() + ".";
         }
 
-        private void GenerateChart(decimal[] values, string name)
+        private void GenerateChart(decimal[] values, string name, decimal goal = 0)
         {
             int currentAge = int.Parse(txtAge.Text);            
 
@@ -307,7 +317,15 @@ namespace RetirementFunds
                     Title = "Value ($)",
                     LabelFormatter = val => val.ToString("C0"),
                     MinValue = double.Parse(txtPrincipal.Text, NumberStyles.Currency) * 0.999,
-                }
+                    Sections = new SectionsCollection
+                    {
+                        new AxisSection
+                        {
+                            Value = 10 * (double)goal,
+                            Stroke = new SolidColorBrush(System.Windows.Media.Color.FromRgb(189, 17, 17))
+                        }
+                    },
+                }                
             );
         }
 

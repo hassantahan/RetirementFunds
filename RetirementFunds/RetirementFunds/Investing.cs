@@ -80,9 +80,8 @@ namespace RetirementFunds
 
         // Uses the inverse CDF to calculate a random return for a portfolio with inputs of a standard deviaton (represented as volatility),
         // mean return, and the allocation, all for each specific asset allocation.
-        public static double CalculateRandomPortfolioReturn(double bondReturns, double bondVolatility, double bondAllocation, double stockReturns, double stockVolatility, double stockAllocation)
-        {
-            Random r = new Random();
+        public static double CalculateRandomPortfolioReturn(double bondReturns, double bondVolatility, double bondAllocation, double stockReturns, double stockVolatility, double stockAllocation, Random r)
+        {                        
             NormalDistribution bondDistrubtion = new NormalDistribution(bondReturns, bondVolatility);
             NormalDistribution stockDistrubtion = new NormalDistribution(stockReturns, stockVolatility);
 
