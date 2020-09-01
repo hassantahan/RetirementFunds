@@ -41,9 +41,9 @@ namespace RetirementFunds
         }
 
         private void txtAge_Leave(object sender, EventArgs e)
-        {
+        {            
             FormControlMethods.FormatTextBox((TextBox)sender);
-            txtSavingsGoal.Text = Investing.CalculateGoal(double.Parse(txtWithdrawlRate.Text) / 100, double.Parse(txtTaxRate.Text) / 100, decimal.Parse(txtRetirementSpending.Text, NumberStyles.Currency));
+            txtSavingsGoal.Text = GetGoal();
         }
 
         private void txtAge_KeyDown(object sender, KeyEventArgs e)
@@ -106,13 +106,12 @@ namespace RetirementFunds
 
         private void Form2_Click(object sender, EventArgs e)
         {
-            txtSavingsGoal.Text = Investing.CalculateGoal(double.Parse(txtWithdrawlRate.Text) / 100, double.Parse(txtTaxRate.Text) / 100, decimal.Parse(txtRetirementSpending.Text, NumberStyles.Currency));
-            
+            txtSavingsGoal.Text = GetGoal();
         }       
 
         private void chkInflationIncomeGrowthPeg_CheckedChanged(object sender, EventArgs e)
         {
-            txtSavingsGoal.Text = Investing.CalculateGoal(double.Parse(txtWithdrawlRate.Text) / 100, double.Parse(txtTaxRate.Text) / 100, decimal.Parse(txtRetirementSpending.Text, NumberStyles.Currency));
+            txtSavingsGoal.Text = GetGoal();
         }
 
         // Calculates the fraction that is being saved.
@@ -131,19 +130,49 @@ namespace RetirementFunds
         {
             GenerateReturns();
         }        
-       
+        
+        // Receives the goal string from the Investing class after sending parameters
+        private string GetGoal()
+        {
+            bool pegToInflation = chkInflationRetirementSpendingPeg.Checked;
+            bool incomeGrowthExcessOfInflation = chkInflationIncomeGrowthPeg.Checked;
+
+            double bondAllocation = double.Parse(txtBondFraction.Text) / 100;
+            double stockAllocation = double.Parse(txtStockFraction.Text) / 100;
+            double bReturns = double.Parse(txtBondReturns.Text) / 100;
+            double sReturns = double.Parse(txtStockReturns.Text) / 100; 
+            double withdrawlRate = double.Parse(txtWithdrawlRate.Text) / 100;
+            double taxRate = double.Parse(txtTaxRate.Text) / 100;
+            double inflation = double.Parse(txtInflation.Text) / 100;
+            double incomeGrowthRate = double.Parse(txtIncomeGrowth.Text) / 100 + (incomeGrowthExcessOfInflation ? inflation : 0);
+            double savingsGrowthRateFraction = double.Parse(txtSavingFractionGrowth.Text) / 100;
+            
+            double savingsGrowthRate = savingsGrowthRateFraction * incomeGrowthRate;
+            double averageReturn = Investing.PortfolioWeightedAverageReturn(bondAllocation, stockAllocation, bReturns, sReturns);
+
+            decimal initialSavings = decimal.Parse(txtIncome.Text, NumberStyles.Currency) - decimal.Parse(txtSpending.Text, NumberStyles.Currency);
+            decimal spending = decimal.Parse(txtRetirementSpending.Text, NumberStyles.Currency);
+            decimal currentInvestments = decimal.Parse(txtPrincipal.Text, NumberStyles.Currency);
+
+            return Investing.CalculateGoal(withdrawlRate, taxRate, currentInvestments, spending, initialSavings, averageReturn, savingsGrowthRate, pegToInflation, inflation);
+        }
+
         private void GenerateReturns()
-        {       
+        {
             // Set parameters
+            bool incomeGrowthExcessOfInflation = chkInflationIncomeGrowthPeg.Checked;
+            //bool retirementPeggedToInflation = chkInflationRetirementSpendingPeg.Checked;
+
             int projectionType = cboProjection.SelectedIndex;
             int paymentFrequency = Investing.recurringInvestingFrequency;            
 
             double bondAllocation = double.Parse(txtBondFraction.Text) / 100;
             double stockAllocation = double.Parse(txtStockFraction.Text) / 100;
-            double incomeGrowthRate = double.Parse(txtIncomeGrowth.Text) / 100;
+            double inflationMean = double.Parse(txtInflation.Text) / 100;
+            double incomeGrowthRate = double.Parse(txtIncomeGrowth.Text) / 100 + (incomeGrowthExcessOfInflation ? inflationMean : 0);
             double savingsGrowthRateFraction = double.Parse(txtSavingFractionGrowth.Text) / 100;
             double bReturns = double.Parse(txtBondReturns.Text) / 100;
-            double sReturns = double.Parse(txtStockReturns.Text) / 100;
+            double sReturns = double.Parse(txtStockReturns.Text) / 100;            
             double savingsGrowthRate = savingsGrowthRateFraction * incomeGrowthRate;
 
             decimal currentInvestments = decimal.Parse(txtPrincipal.Text, NumberStyles.Currency);
@@ -192,6 +221,7 @@ namespace RetirementFunds
                 // Monte-Carlo
 
                 int simulations = 50000;
+                //double inflationVolatility = 0.0119;
                 double stockVolatility = 0.21;
                 double bondVolatility = 0.03;
 
@@ -226,7 +256,6 @@ namespace RetirementFunds
                             x += initialSavings * i;
                         }
 
-                        //Thread.Sleep(1);
                         lengths[i]++;
                     }                    
                 }                

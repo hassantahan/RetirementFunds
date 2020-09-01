@@ -26,20 +26,20 @@ namespace RetirementFunds
         public static double GetTimeToGoal(decimal goal, decimal principal, decimal payment, double growth, double savingsGrowth)
         {
             double time = 0;
-            decimal m = 0;
+            decimal bal = 0;
 
-            while (m < goal)
+            while (bal < goal)
             {
-                m = 0;
-                m += FinanceCalculations.FutureValue(principal, time, growth);
+                bal = 0;
+                bal += FinanceCalculations.FutureValue(principal, time, growth);
 
                 if (savingsGrowth > 0)
                 {
-                    m += FinanceCalculations.FutureVariableAnnuityValue(payment, time, growth, savingsGrowth, 365, 0, recurringInvestingFrequency);
+                    bal += FinanceCalculations.FutureVariableAnnuityValue(payment, time, growth, savingsGrowth, 365, 0, recurringInvestingFrequency);
                 }
                 else
                 {
-                    m += FinanceCalculations.FutureFixedAnnuityValue(payment, time, growth, 365, 0, recurringInvestingFrequency);
+                    bal += FinanceCalculations.FutureFixedAnnuityValue(payment, time, growth, 365, 0, recurringInvestingFrequency);
                 }
 
                 time += TIME_STEP;
@@ -51,8 +51,8 @@ namespace RetirementFunds
         // An interative function that finds the rate to meet the goal within a given time.
         public static double GetRateOfGrowth(decimal goal, decimal startingBal, decimal initialSavings, double growth, double time)
         {
-            decimal bal = 0;
-            double rate = RATE_STEP;
+            decimal bal = startingBal;
+            double rate = 0;
             while (bal < goal)
             {
                 bal = FinanceCalculations.FutureValue(startingBal, time, rate, 365);
@@ -70,12 +70,39 @@ namespace RetirementFunds
             return rate;
         }
 
-        // Simple method used to calculate the financial goal.
-        public static string CalculateGoal(double withdrawlRate, double taxRate, decimal retirementSpeding)
+        // Method used to calculate the financial goal.
+        public static string CalculateGoal(double withdrawlRate, double taxRate, decimal currentInvestments, decimal retirementSpeding, decimal initialSavings, double returns, double savings, bool pegToInflation, double inflation)
         {
-            decimal goal = retirementSpeding * (decimal)((1 + taxRate) / withdrawlRate);
+            double time = 0;
+            decimal goal = currentInvestments;
+            decimal fix = (decimal)((1 + taxRate) / withdrawlRate);
+            decimal adjustedRetirementSpeding = retirementSpeding;
 
-            return goal.ToString("C2");
+            if (!pegToInflation)
+            {
+                goal = retirementSpeding * fix;
+                return goal.ToString("C0");
+            }
+
+
+            while (goal / fix < adjustedRetirementSpeding)
+            {
+                goal = currentInvestments;
+
+                if (savings > 0)
+                {
+                    goal += FinanceCalculations.FutureVariableAnnuityValue(initialSavings, time, returns, savings, 365, 0, recurringInvestingFrequency);
+                }
+                else 
+                {
+                    goal += FinanceCalculations.FutureFixedAnnuityValue(initialSavings, time, returns, 365, 0, recurringInvestingFrequency);
+                }
+                
+                adjustedRetirementSpeding = FinanceCalculations.FutureValue(retirementSpeding, time, inflation);
+                time++;
+            }             
+
+            return goal.ToString("C0");
         }
 
         // Uses the inverse CDF to calculate a random return for a portfolio with inputs of a standard deviaton (represented as volatility),

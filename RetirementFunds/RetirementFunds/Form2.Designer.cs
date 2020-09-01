@@ -218,7 +218,6 @@
             // chkInflationRetirementSpendingPeg
             // 
             this.chkInflationRetirementSpendingPeg.AutoSize = true;
-            this.chkInflationRetirementSpendingPeg.Enabled = false;
             this.chkInflationRetirementSpendingPeg.Location = new System.Drawing.Point(613, 92);
             this.chkInflationRetirementSpendingPeg.Name = "chkInflationRetirementSpendingPeg";
             this.chkInflationRetirementSpendingPeg.Size = new System.Drawing.Size(97, 17);
@@ -290,7 +289,7 @@
             this.txtSavingsGoal.Size = new System.Drawing.Size(100, 20);
             this.txtSavingsGoal.TabIndex = 15;
             this.txtSavingsGoal.Tag = "dollar";
-            this.txtSavingsGoal.Text = "$1 466 666.67";
+            this.txtSavingsGoal.Text = "$1 466 667";
             this.txtSavingsGoal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtIncomeGrowth
@@ -371,7 +370,6 @@
             // chkInflationIncomeGrowthPeg
             // 
             this.chkInflationIncomeGrowthPeg.AutoSize = true;
-            this.chkInflationIncomeGrowthPeg.Enabled = false;
             this.chkInflationIncomeGrowthPeg.Location = new System.Drawing.Point(613, 14);
             this.chkInflationIncomeGrowthPeg.Name = "chkInflationIncomeGrowthPeg";
             this.chkInflationIncomeGrowthPeg.Size = new System.Drawing.Size(130, 17);
@@ -391,7 +389,6 @@
             // 
             // txtInflation
             // 
-            this.txtInflation.Enabled = false;
             this.txtInflation.Location = new System.Drawing.Point(955, 38);
             this.txtInflation.Name = "txtInflation";
             this.txtInflation.Size = new System.Drawing.Size(100, 20);
