@@ -66,7 +66,6 @@
             this.lblProjectionMethod = new System.Windows.Forms.Label();
             this.lblExpectedReturns = new System.Windows.Forms.Label();
             this.lblBondReturns = new System.Windows.Forms.Label();
-            this.lblStockReturns = new System.Windows.Forms.Label();
             this.txtStockReturns = new System.Windows.Forms.TextBox();
             this.txtBondReturns = new System.Windows.Forms.TextBox();
             this.line2 = new System.Windows.Forms.Label();
@@ -79,35 +78,39 @@
             // lblAge
             // 
             this.lblAge.AutoSize = true;
-            this.lblAge.Location = new System.Drawing.Point(12, 15);
+            this.lblAge.Location = new System.Drawing.Point(15, 19);
+            this.lblAge.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAge.Name = "lblAge";
-            this.lblAge.Size = new System.Drawing.Size(63, 13);
+            this.lblAge.Size = new System.Drawing.Size(86, 17);
             this.lblAge.TabIndex = 0;
             this.lblAge.Text = "Age (years):";
             // 
             // lblPrincipal
             // 
             this.lblPrincipal.AutoSize = true;
-            this.lblPrincipal.Location = new System.Drawing.Point(12, 41);
+            this.lblPrincipal.Location = new System.Drawing.Point(15, 51);
+            this.lblPrincipal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrincipal.Name = "lblPrincipal";
-            this.lblPrincipal.Size = new System.Drawing.Size(119, 13);
+            this.lblPrincipal.Size = new System.Drawing.Size(160, 17);
             this.lblPrincipal.TabIndex = 1;
             this.lblPrincipal.Text = "Current Investments ($):";
             // 
             // lblIncome
             // 
             this.lblIncome.AutoSize = true;
-            this.lblIncome.Location = new System.Drawing.Point(12, 67);
+            this.lblIncome.Location = new System.Drawing.Point(15, 84);
+            this.lblIncome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIncome.Name = "lblIncome";
-            this.lblIncome.Size = new System.Drawing.Size(129, 13);
+            this.lblIncome.Size = new System.Drawing.Size(174, 17);
             this.lblIncome.TabIndex = 2;
             this.lblIncome.Text = "Current Yearly Income ($):";
             // 
             // txtPrincipal
             // 
-            this.txtPrincipal.Location = new System.Drawing.Point(194, 38);
+            this.txtPrincipal.Location = new System.Drawing.Point(242, 48);
+            this.txtPrincipal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPrincipal.Name = "txtPrincipal";
-            this.txtPrincipal.Size = new System.Drawing.Size(100, 20);
+            this.txtPrincipal.Size = new System.Drawing.Size(124, 22);
             this.txtPrincipal.TabIndex = 2;
             this.txtPrincipal.Tag = "dollar";
             this.txtPrincipal.Text = "$0.00";
@@ -119,9 +122,10 @@
             // 
             // txtAge
             // 
-            this.txtAge.Location = new System.Drawing.Point(194, 12);
+            this.txtAge.Location = new System.Drawing.Point(242, 15);
+            this.txtAge.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtAge.Name = "txtAge";
-            this.txtAge.Size = new System.Drawing.Size(100, 20);
+            this.txtAge.Size = new System.Drawing.Size(124, 22);
             this.txtAge.TabIndex = 1;
             this.txtAge.Tag = "period";
             this.txtAge.Text = "20";
@@ -132,9 +136,10 @@
             // 
             // txtIncome
             // 
-            this.txtIncome.Location = new System.Drawing.Point(194, 64);
+            this.txtIncome.Location = new System.Drawing.Point(242, 80);
+            this.txtIncome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtIncome.Name = "txtIncome";
-            this.txtIncome.Size = new System.Drawing.Size(100, 20);
+            this.txtIncome.Size = new System.Drawing.Size(124, 22);
             this.txtIncome.TabIndex = 3;
             this.txtIncome.Tag = "dollar";
             this.txtIncome.Text = "$75000.00";
@@ -147,18 +152,20 @@
             // lblSpending
             // 
             this.lblSpending.AutoSize = true;
-            this.lblSpending.Location = new System.Drawing.Point(12, 93);
+            this.lblSpending.Location = new System.Drawing.Point(15, 116);
+            this.lblSpending.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSpending.Name = "lblSpending";
-            this.lblSpending.Size = new System.Drawing.Size(139, 13);
+            this.lblSpending.Size = new System.Drawing.Size(189, 17);
             this.lblSpending.TabIndex = 6;
             this.lblSpending.Text = "Current Yearly Spending ($):";
             // 
             // txtSavings
             // 
-            this.txtSavings.Location = new System.Drawing.Point(177, 116);
+            this.txtSavings.Location = new System.Drawing.Point(242, 145);
+            this.txtSavings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSavings.Name = "txtSavings";
             this.txtSavings.ReadOnly = true;
-            this.txtSavings.Size = new System.Drawing.Size(117, 20);
+            this.txtSavings.Size = new System.Drawing.Size(124, 22);
             this.txtSavings.TabIndex = 5;
             this.txtSavings.Tag = "";
             this.txtSavings.Text = "$15000.00 (20.0%)";
@@ -171,17 +178,19 @@
             // lblSavings
             // 
             this.lblSavings.AutoSize = true;
-            this.lblSavings.Location = new System.Drawing.Point(12, 119);
+            this.lblSavings.Location = new System.Drawing.Point(15, 149);
+            this.lblSavings.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSavings.Name = "lblSavings";
-            this.lblSavings.Size = new System.Drawing.Size(159, 13);
+            this.lblSavings.Size = new System.Drawing.Size(212, 17);
             this.lblSavings.TabIndex = 8;
             this.lblSavings.Text = "Immediate Yearly Savings ($/%):";
             // 
             // txtSpending
             // 
-            this.txtSpending.Location = new System.Drawing.Point(194, 90);
+            this.txtSpending.Location = new System.Drawing.Point(242, 112);
+            this.txtSpending.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSpending.Name = "txtSpending";
-            this.txtSpending.Size = new System.Drawing.Size(100, 20);
+            this.txtSpending.Size = new System.Drawing.Size(124, 22);
             this.txtSpending.TabIndex = 4;
             this.txtSpending.Tag = "dollar";
             this.txtSpending.Text = "$60000.00";
@@ -194,17 +203,19 @@
             // lblRetirementSpending
             // 
             this.lblRetirementSpending.AutoSize = true;
-            this.lblRetirementSpending.Location = new System.Drawing.Point(329, 93);
+            this.lblRetirementSpending.Location = new System.Drawing.Point(411, 116);
+            this.lblRetirementSpending.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRetirementSpending.Name = "lblRetirementSpending";
-            this.lblRetirementSpending.Size = new System.Drawing.Size(166, 13);
+            this.lblRetirementSpending.Size = new System.Drawing.Size(224, 17);
             this.lblRetirementSpending.TabIndex = 10;
             this.lblRetirementSpending.Text = "1st Year Retirement Spending ($):";
             // 
             // txtRetirementSpending
             // 
-            this.txtRetirementSpending.Location = new System.Drawing.Point(501, 90);
+            this.txtRetirementSpending.Location = new System.Drawing.Point(634, 112);
+            this.txtRetirementSpending.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtRetirementSpending.Name = "txtRetirementSpending";
-            this.txtRetirementSpending.Size = new System.Drawing.Size(100, 20);
+            this.txtRetirementSpending.Size = new System.Drawing.Size(124, 22);
             this.txtRetirementSpending.TabIndex = 10;
             this.txtRetirementSpending.Tag = "dollar";
             this.txtRetirementSpending.Text = "$40000.00";
@@ -217,9 +228,10 @@
             // chkInflationRetirementSpendingPeg
             // 
             this.chkInflationRetirementSpendingPeg.AutoSize = true;
-            this.chkInflationRetirementSpendingPeg.Location = new System.Drawing.Point(613, 92);
+            this.chkInflationRetirementSpendingPeg.Location = new System.Drawing.Point(766, 115);
+            this.chkInflationRetirementSpendingPeg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkInflationRetirementSpendingPeg.Name = "chkInflationRetirementSpendingPeg";
-            this.chkInflationRetirementSpendingPeg.Size = new System.Drawing.Size(97, 17);
+            this.chkInflationRetirementSpendingPeg.Size = new System.Drawing.Size(124, 21);
             this.chkInflationRetirementSpendingPeg.TabIndex = 11;
             this.chkInflationRetirementSpendingPeg.Text = "Peg to Inflation";
             this.chkInflationRetirementSpendingPeg.UseVisualStyleBackColor = true;
@@ -227,9 +239,10 @@
             // 
             // txtWithdrawlRate
             // 
-            this.txtWithdrawlRate.Location = new System.Drawing.Point(500, 116);
+            this.txtWithdrawlRate.Location = new System.Drawing.Point(634, 146);
+            this.txtWithdrawlRate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtWithdrawlRate.Name = "txtWithdrawlRate";
-            this.txtWithdrawlRate.Size = new System.Drawing.Size(100, 20);
+            this.txtWithdrawlRate.Size = new System.Drawing.Size(124, 22);
             this.txtWithdrawlRate.TabIndex = 12;
             this.txtWithdrawlRate.Tag = "rate";
             this.txtWithdrawlRate.Text = "3.00";
@@ -241,26 +254,29 @@
             // lblWithdrawlRate
             // 
             this.lblWithdrawlRate.AutoSize = true;
-            this.lblWithdrawlRate.Location = new System.Drawing.Point(328, 119);
+            this.lblWithdrawlRate.Location = new System.Drawing.Point(410, 149);
+            this.lblWithdrawlRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWithdrawlRate.Name = "lblWithdrawlRate";
-            this.lblWithdrawlRate.Size = new System.Drawing.Size(162, 13);
+            this.lblWithdrawlRate.Size = new System.Drawing.Size(217, 17);
             this.lblWithdrawlRate.TabIndex = 14;
             this.lblWithdrawlRate.Text = "Percentage of Total Savings (%):";
             // 
             // lblTaxRate
             // 
             this.lblTaxRate.AutoSize = true;
-            this.lblTaxRate.Location = new System.Drawing.Point(762, 15);
+            this.lblTaxRate.Location = new System.Drawing.Point(952, 19);
+            this.lblTaxRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTaxRate.Name = "lblTaxRate";
-            this.lblTaxRate.Size = new System.Drawing.Size(125, 13);
+            this.lblTaxRate.Size = new System.Drawing.Size(168, 17);
             this.lblTaxRate.TabIndex = 15;
             this.lblTaxRate.Text = "Retirement Tax Rate (%):";
             // 
             // txtTaxRate
             // 
-            this.txtTaxRate.Location = new System.Drawing.Point(955, 12);
+            this.txtTaxRate.Location = new System.Drawing.Point(1194, 15);
+            this.txtTaxRate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTaxRate.Name = "txtTaxRate";
-            this.txtTaxRate.Size = new System.Drawing.Size(100, 20);
+            this.txtTaxRate.Size = new System.Drawing.Size(124, 22);
             this.txtTaxRate.TabIndex = 14;
             this.txtTaxRate.Tag = "rate";
             this.txtTaxRate.Text = "10.00";
@@ -273,19 +289,21 @@
             // 
             this.lblSavingsGoal.AutoSize = true;
             this.lblSavingsGoal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSavingsGoal.Location = new System.Drawing.Point(762, 67);
+            this.lblSavingsGoal.Location = new System.Drawing.Point(952, 84);
+            this.lblSavingsGoal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSavingsGoal.Name = "lblSavingsGoal";
-            this.lblSavingsGoal.Size = new System.Drawing.Size(105, 13);
+            this.lblSavingsGoal.Size = new System.Drawing.Size(135, 17);
             this.lblSavingsGoal.TabIndex = 17;
             this.lblSavingsGoal.Text = "Savings Goal ($):";
             // 
             // txtSavingsGoal
             // 
             this.txtSavingsGoal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSavingsGoal.Location = new System.Drawing.Point(955, 64);
+            this.txtSavingsGoal.Location = new System.Drawing.Point(1194, 80);
+            this.txtSavingsGoal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSavingsGoal.Name = "txtSavingsGoal";
             this.txtSavingsGoal.ReadOnly = true;
-            this.txtSavingsGoal.Size = new System.Drawing.Size(100, 20);
+            this.txtSavingsGoal.Size = new System.Drawing.Size(124, 23);
             this.txtSavingsGoal.TabIndex = 15;
             this.txtSavingsGoal.Tag = "dollar";
             this.txtSavingsGoal.Text = "$1466667";
@@ -293,9 +311,10 @@
             // 
             // txtIncomeGrowth
             // 
-            this.txtIncomeGrowth.Location = new System.Drawing.Point(498, 12);
+            this.txtIncomeGrowth.Location = new System.Drawing.Point(632, 14);
+            this.txtIncomeGrowth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtIncomeGrowth.Name = "txtIncomeGrowth";
-            this.txtIncomeGrowth.Size = new System.Drawing.Size(102, 20);
+            this.txtIncomeGrowth.Size = new System.Drawing.Size(126, 22);
             this.txtIncomeGrowth.TabIndex = 6;
             this.txtIncomeGrowth.Tag = "rate";
             this.txtIncomeGrowth.Text = "2.50";
@@ -307,17 +326,19 @@
             // lblIncomeGrowth
             // 
             this.lblIncomeGrowth.AutoSize = true;
-            this.lblIncomeGrowth.Location = new System.Drawing.Point(328, 15);
+            this.lblIncomeGrowth.Location = new System.Drawing.Point(410, 19);
+            this.lblIncomeGrowth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIncomeGrowth.Name = "lblIncomeGrowth";
-            this.lblIncomeGrowth.Size = new System.Drawing.Size(131, 13);
+            this.lblIncomeGrowth.Size = new System.Drawing.Size(176, 17);
             this.lblIncomeGrowth.TabIndex = 20;
             this.lblIncomeGrowth.Text = "Yearly Income Growth (%):";
             // 
             // txtSpendingFractionGrowth
             // 
-            this.txtSpendingFractionGrowth.Location = new System.Drawing.Point(666, 38);
+            this.txtSpendingFractionGrowth.Location = new System.Drawing.Point(832, 48);
+            this.txtSpendingFractionGrowth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSpendingFractionGrowth.Name = "txtSpendingFractionGrowth";
-            this.txtSpendingFractionGrowth.Size = new System.Drawing.Size(70, 20);
+            this.txtSpendingFractionGrowth.Size = new System.Drawing.Size(86, 22);
             this.txtSpendingFractionGrowth.TabIndex = 8;
             this.txtSpendingFractionGrowth.Tag = "rate,fraction";
             this.txtSpendingFractionGrowth.Text = "50.0";
@@ -328,9 +349,10 @@
             // 
             // txtSavingFractionGrowth
             // 
-            this.txtSavingFractionGrowth.Location = new System.Drawing.Point(666, 64);
+            this.txtSavingFractionGrowth.Location = new System.Drawing.Point(832, 80);
+            this.txtSavingFractionGrowth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSavingFractionGrowth.Name = "txtSavingFractionGrowth";
-            this.txtSavingFractionGrowth.Size = new System.Drawing.Size(70, 20);
+            this.txtSavingFractionGrowth.Size = new System.Drawing.Size(86, 22);
             this.txtSavingFractionGrowth.TabIndex = 9;
             this.txtSavingFractionGrowth.Tag = "rate,fraction";
             this.txtSavingFractionGrowth.Text = "50.0";
@@ -342,36 +364,40 @@
             // lblFraction
             // 
             this.lblFraction.AutoSize = true;
-            this.lblFraction.Location = new System.Drawing.Point(328, 41);
+            this.lblFraction.Location = new System.Drawing.Point(410, 51);
+            this.lblFraction.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFraction.Name = "lblFraction";
-            this.lblFraction.Size = new System.Drawing.Size(258, 13);
+            this.lblFraction.Size = new System.Drawing.Size(344, 17);
             this.lblFraction.TabIndex = 24;
             this.lblFraction.Text = "Fraction of Income Growth Spent on  (% out of 100)...";
             // 
             // lblSpendingFractionGrowth
             // 
             this.lblSpendingFractionGrowth.AutoSize = true;
-            this.lblSpendingFractionGrowth.Location = new System.Drawing.Point(605, 41);
+            this.lblSpendingFractionGrowth.Location = new System.Drawing.Point(756, 51);
+            this.lblSpendingFractionGrowth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSpendingFractionGrowth.Name = "lblSpendingFractionGrowth";
-            this.lblSpendingFractionGrowth.Size = new System.Drawing.Size(55, 13);
+            this.lblSpendingFractionGrowth.Size = new System.Drawing.Size(72, 17);
             this.lblSpendingFractionGrowth.TabIndex = 25;
             this.lblSpendingFractionGrowth.Text = "Spending:";
             // 
             // lblSavingFractionGrowth
             // 
             this.lblSavingFractionGrowth.AutoSize = true;
-            this.lblSavingFractionGrowth.Location = new System.Drawing.Point(617, 67);
+            this.lblSavingFractionGrowth.Location = new System.Drawing.Point(771, 84);
+            this.lblSavingFractionGrowth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSavingFractionGrowth.Name = "lblSavingFractionGrowth";
-            this.lblSavingFractionGrowth.Size = new System.Drawing.Size(43, 13);
+            this.lblSavingFractionGrowth.Size = new System.Drawing.Size(55, 17);
             this.lblSavingFractionGrowth.TabIndex = 26;
             this.lblSavingFractionGrowth.Text = "Saving:";
             // 
             // chkInflationIncomeGrowthPeg
             // 
             this.chkInflationIncomeGrowthPeg.AutoSize = true;
-            this.chkInflationIncomeGrowthPeg.Location = new System.Drawing.Point(613, 14);
+            this.chkInflationIncomeGrowthPeg.Location = new System.Drawing.Point(766, 18);
+            this.chkInflationIncomeGrowthPeg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkInflationIncomeGrowthPeg.Name = "chkInflationIncomeGrowthPeg";
-            this.chkInflationIncomeGrowthPeg.Size = new System.Drawing.Size(130, 17);
+            this.chkInflationIncomeGrowthPeg.Size = new System.Drawing.Size(166, 21);
             this.chkInflationIncomeGrowthPeg.TabIndex = 7;
             this.chkInflationIncomeGrowthPeg.Text = "In Excess of Inflation?";
             this.chkInflationIncomeGrowthPeg.UseVisualStyleBackColor = true;
@@ -380,17 +406,19 @@
             // lblAverageInflation
             // 
             this.lblAverageInflation.AutoSize = true;
-            this.lblAverageInflation.Location = new System.Drawing.Point(762, 41);
+            this.lblAverageInflation.Location = new System.Drawing.Point(952, 51);
+            this.lblAverageInflation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAverageInflation.Name = "lblAverageInflation";
-            this.lblAverageInflation.Size = new System.Drawing.Size(133, 13);
+            this.lblAverageInflation.Size = new System.Drawing.Size(178, 17);
             this.lblAverageInflation.TabIndex = 28;
             this.lblAverageInflation.Text = "Average Inflation Rate (%):";
             // 
             // txtInflation
             // 
-            this.txtInflation.Location = new System.Drawing.Point(955, 38);
+            this.txtInflation.Location = new System.Drawing.Point(1194, 48);
+            this.txtInflation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtInflation.Name = "txtInflation";
-            this.txtInflation.Size = new System.Drawing.Size(100, 20);
+            this.txtInflation.Size = new System.Drawing.Size(124, 22);
             this.txtInflation.TabIndex = 16;
             this.txtInflation.Tag = "rate";
             this.txtInflation.Text = "2.19";
@@ -402,26 +430,29 @@
             // lblBondsPercentage
             // 
             this.lblBondsPercentage.AutoSize = true;
-            this.lblBondsPercentage.Location = new System.Drawing.Point(932, 119);
+            this.lblBondsPercentage.Location = new System.Drawing.Point(1165, 149);
+            this.lblBondsPercentage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBondsPercentage.Name = "lblBondsPercentage";
-            this.lblBondsPercentage.Size = new System.Drawing.Size(40, 13);
+            this.lblBondsPercentage.Size = new System.Drawing.Size(52, 17);
             this.lblBondsPercentage.TabIndex = 33;
             this.lblBondsPercentage.Text = "Bonds:";
             // 
             // lblStocksPercentage
             // 
             this.lblStocksPercentage.AutoSize = true;
-            this.lblStocksPercentage.Location = new System.Drawing.Point(762, 119);
+            this.lblStocksPercentage.Location = new System.Drawing.Point(952, 149);
+            this.lblStocksPercentage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStocksPercentage.Name = "lblStocksPercentage";
-            this.lblStocksPercentage.Size = new System.Drawing.Size(43, 13);
+            this.lblStocksPercentage.Size = new System.Drawing.Size(54, 17);
             this.lblStocksPercentage.TabIndex = 32;
             this.lblStocksPercentage.Text = "Stocks:";
             // 
             // txtStockFraction
             // 
-            this.txtStockFraction.Location = new System.Drawing.Point(811, 116);
+            this.txtStockFraction.Location = new System.Drawing.Point(1014, 145);
+            this.txtStockFraction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtStockFraction.Name = "txtStockFraction";
-            this.txtStockFraction.Size = new System.Drawing.Size(77, 20);
+            this.txtStockFraction.Size = new System.Drawing.Size(95, 22);
             this.txtStockFraction.TabIndex = 17;
             this.txtStockFraction.Tag = "rate,fraction";
             this.txtStockFraction.Text = "90.0";
@@ -432,9 +463,10 @@
             // 
             // txtBondFraction
             // 
-            this.txtBondFraction.Location = new System.Drawing.Point(978, 116);
+            this.txtBondFraction.Location = new System.Drawing.Point(1222, 145);
+            this.txtBondFraction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBondFraction.Name = "txtBondFraction";
-            this.txtBondFraction.Size = new System.Drawing.Size(77, 20);
+            this.txtBondFraction.Size = new System.Drawing.Size(95, 22);
             this.txtBondFraction.TabIndex = 18;
             this.txtBondFraction.Tag = "rate,fraction";
             this.txtBondFraction.Text = "10.0";
@@ -446,9 +478,10 @@
             // lblPortfolioBreakdown
             // 
             this.lblPortfolioBreakdown.AutoSize = true;
-            this.lblPortfolioBreakdown.Location = new System.Drawing.Point(762, 93);
+            this.lblPortfolioBreakdown.Location = new System.Drawing.Point(952, 116);
+            this.lblPortfolioBreakdown.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPortfolioBreakdown.Name = "lblPortfolioBreakdown";
-            this.lblPortfolioBreakdown.Size = new System.Drawing.Size(189, 13);
+            this.lblPortfolioBreakdown.Size = new System.Drawing.Size(256, 17);
             this.lblPortfolioBreakdown.TabIndex = 34;
             this.lblPortfolioBreakdown.Text = "Fraction of Portfolio as (% out of 100)...";
             // 
@@ -459,52 +492,48 @@
             this.cboProjection.Items.AddRange(new object[] {
             "Fixed Rate Returns",
             "Monte Carlo Simulations"});
-            this.cboProjection.Location = new System.Drawing.Point(146, 158);
+            this.cboProjection.Location = new System.Drawing.Point(182, 198);
+            this.cboProjection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboProjection.Name = "cboProjection";
-            this.cboProjection.Size = new System.Drawing.Size(149, 21);
+            this.cboProjection.Size = new System.Drawing.Size(185, 24);
             this.cboProjection.TabIndex = 19;
             // 
             // lblProjectionMethod
             // 
             this.lblProjectionMethod.AutoSize = true;
-            this.lblProjectionMethod.Location = new System.Drawing.Point(13, 161);
+            this.lblProjectionMethod.Location = new System.Drawing.Point(16, 201);
+            this.lblProjectionMethod.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProjectionMethod.Name = "lblProjectionMethod";
-            this.lblProjectionMethod.Size = new System.Drawing.Size(96, 13);
+            this.lblProjectionMethod.Size = new System.Drawing.Size(126, 17);
             this.lblProjectionMethod.TabIndex = 37;
             this.lblProjectionMethod.Text = "Projection Method:";
             // 
             // lblExpectedReturns
             // 
             this.lblExpectedReturns.AutoSize = true;
-            this.lblExpectedReturns.Location = new System.Drawing.Point(328, 161);
+            this.lblExpectedReturns.Location = new System.Drawing.Point(410, 201);
+            this.lblExpectedReturns.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExpectedReturns.Name = "lblExpectedReturns";
-            this.lblExpectedReturns.Size = new System.Drawing.Size(159, 13);
+            this.lblExpectedReturns.Size = new System.Drawing.Size(266, 17);
             this.lblExpectedReturns.TabIndex = 38;
-            this.lblExpectedReturns.Text = "Expected rate of return for (%) ...";
+            this.lblExpectedReturns.Text = "Expected rate of return for (%) ... Stocks:";
             // 
             // lblBondReturns
             // 
             this.lblBondReturns.AutoSize = true;
-            this.lblBondReturns.Location = new System.Drawing.Point(610, 161);
+            this.lblBondReturns.Location = new System.Drawing.Point(762, 201);
+            this.lblBondReturns.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBondReturns.Name = "lblBondReturns";
-            this.lblBondReturns.Size = new System.Drawing.Size(40, 13);
+            this.lblBondReturns.Size = new System.Drawing.Size(52, 17);
             this.lblBondReturns.TabIndex = 42;
             this.lblBondReturns.Text = "Bonds:";
             // 
-            // lblStockReturns
-            // 
-            this.lblStockReturns.AutoSize = true;
-            this.lblStockReturns.Location = new System.Drawing.Point(495, 161);
-            this.lblStockReturns.Name = "lblStockReturns";
-            this.lblStockReturns.Size = new System.Drawing.Size(43, 13);
-            this.lblStockReturns.TabIndex = 41;
-            this.lblStockReturns.Text = "Stocks:";
-            // 
             // txtStockReturns
             // 
-            this.txtStockReturns.Location = new System.Drawing.Point(545, 158);
+            this.txtStockReturns.Location = new System.Drawing.Point(681, 198);
+            this.txtStockReturns.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtStockReturns.Name = "txtStockReturns";
-            this.txtStockReturns.Size = new System.Drawing.Size(56, 20);
+            this.txtStockReturns.Size = new System.Drawing.Size(69, 22);
             this.txtStockReturns.TabIndex = 20;
             this.txtStockReturns.Tag = "rate";
             this.txtStockReturns.Text = "8.55";
@@ -515,9 +544,10 @@
             // 
             // txtBondReturns
             // 
-            this.txtBondReturns.Location = new System.Drawing.Point(656, 158);
+            this.txtBondReturns.Location = new System.Drawing.Point(820, 198);
+            this.txtBondReturns.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBondReturns.Name = "txtBondReturns";
-            this.txtBondReturns.Size = new System.Drawing.Size(56, 20);
+            this.txtBondReturns.Size = new System.Drawing.Size(69, 22);
             this.txtBondReturns.TabIndex = 21;
             this.txtBondReturns.Tag = "rate";
             this.txtBondReturns.Text = "2.50";
@@ -529,17 +559,19 @@
             // line2
             // 
             this.line2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.line2.Location = new System.Drawing.Point(12, 141);
+            this.line2.Location = new System.Drawing.Point(15, 176);
+            this.line2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.line2.Name = "line2";
-            this.line2.Size = new System.Drawing.Size(1043, 2);
+            this.line2.Size = new System.Drawing.Size(1303, 2);
             this.line2.TabIndex = 43;
             // 
             // btnRun
             // 
             this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRun.Location = new System.Drawing.Point(966, 156);
+            this.btnRun.Location = new System.Drawing.Point(1208, 195);
+            this.btnRun.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(89, 23);
+            this.btnRun.Size = new System.Drawing.Size(111, 29);
             this.btnRun.TabIndex = 22;
             this.btnRun.Text = "Run";
             this.btnRun.UseVisualStyleBackColor = true;
@@ -548,9 +580,10 @@
             // line1
             // 
             this.line1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.line1.Location = new System.Drawing.Point(333, 86);
+            this.line1.Location = new System.Drawing.Point(416, 108);
+            this.line1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(403, 2);
+            this.line1.Size = new System.Drawing.Size(503, 2);
             this.line1.TabIndex = 45;
             // 
             // lblResults
@@ -558,33 +591,34 @@
             this.lblResults.AutoSize = true;
             this.lblResults.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResults.Location = new System.Drawing.Point(107, 219);
+            this.lblResults.Location = new System.Drawing.Point(134, 274);
+            this.lblResults.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblResults.Name = "lblResults";
-            this.lblResults.Size = new System.Drawing.Size(13, 17);
+            this.lblResults.Size = new System.Drawing.Size(15, 20);
             this.lblResults.TabIndex = 46;
             this.lblResults.Text = ".";
             // 
             // carcInvestment
             // 
-            this.carcInvestment.Location = new System.Drawing.Point(16, 196);
+            this.carcInvestment.Location = new System.Drawing.Point(20, 245);
+            this.carcInvestment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.carcInvestment.Name = "carcInvestment";
-            this.carcInvestment.Size = new System.Drawing.Size(1043, 349);
+            this.carcInvestment.Size = new System.Drawing.Size(1304, 436);
             this.carcInvestment.TabIndex = 35;
             this.carcInvestment.Text = "cartesianChart1";
             // 
             // Form2
             // 
             this.AcceptButton = this.btnRun;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1067, 557);
+            this.ClientSize = new System.Drawing.Size(1334, 696);
             this.Controls.Add(this.lblResults);
             this.Controls.Add(this.line1);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.line2);
             this.Controls.Add(this.lblBondReturns);
-            this.Controls.Add(this.lblStockReturns);
             this.Controls.Add(this.txtStockReturns);
             this.Controls.Add(this.txtBondReturns);
             this.Controls.Add(this.lblExpectedReturns);
@@ -626,6 +660,7 @@
             this.Controls.Add(this.lblPrincipal);
             this.Controls.Add(this.lblAge);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "Form2";
             this.Text = "Retirement Funds";
@@ -676,7 +711,6 @@
         private System.Windows.Forms.Label lblProjectionMethod;
         private System.Windows.Forms.Label lblExpectedReturns;
         private System.Windows.Forms.Label lblBondReturns;
-        private System.Windows.Forms.Label lblStockReturns;
         private System.Windows.Forms.TextBox txtStockReturns;
         private System.Windows.Forms.TextBox txtBondReturns;
         private System.Windows.Forms.Label line2;

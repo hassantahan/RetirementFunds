@@ -22,3 +22,26 @@ M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\Retir
 M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\Meta.Numerics.dll
 M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\Meta.Numerics.pdb
 M:\Personal Folders\Programs\Random Stuff\Retirement Funds\RetirementFunds\RetirementFunds\bin\Debug\Meta.Numerics.xml
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\RetirementFunds.exe.config
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\RetirementFunds.exe
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\RetirementFunds.pdb
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.dll
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.WinForms.dll
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.pdb
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.xml
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.WinForms.pdb
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.WinForms.xml
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\Meta.Numerics.pdb
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\bin\Debug\Meta.Numerics.xml
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.csprojAssemblyReference.cache
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.Form1.resources
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.Form2.resources
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.Properties.Resources.resources
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.csproj.GenerateResource.cache
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.csproj.CoreCompileInputs.cache
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.csproj.CopyComplete
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.exe
+C:\Users\rajat\Desktop\RetirementCalc\RetirementFunds\RetirementFunds\RetirementFunds\obj\Debug\RetirementFunds.pdb

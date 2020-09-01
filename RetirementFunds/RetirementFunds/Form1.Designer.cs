@@ -64,21 +64,23 @@
             // lblEnterPrincipalLabel
             // 
             this.lblEnterPrincipalLabel.AutoSize = true;
-            this.lblEnterPrincipalLabel.Location = new System.Drawing.Point(12, 9);
+            this.lblEnterPrincipalLabel.Location = new System.Drawing.Point(15, 11);
+            this.lblEnterPrincipalLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEnterPrincipalLabel.Name = "lblEnterPrincipalLabel";
-            this.lblEnterPrincipalLabel.Size = new System.Drawing.Size(104, 13);
+            this.lblEnterPrincipalLabel.Size = new System.Drawing.Size(140, 17);
             this.lblEnterPrincipalLabel.TabIndex = 0;
             this.lblEnterPrincipalLabel.Text = "Principal Amount ($):";
             this.tltPrincipalAmount.SetToolTip(this.lblEnterPrincipalLabel, "The original amount of investment made in an asset.");
             // 
             // txtPrincipal
             // 
-            this.txtPrincipal.Location = new System.Drawing.Point(241, 5);
+            this.txtPrincipal.Location = new System.Drawing.Point(301, 6);
+            this.txtPrincipal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPrincipal.Name = "txtPrincipal";
-            this.txtPrincipal.Size = new System.Drawing.Size(100, 20);
+            this.txtPrincipal.Size = new System.Drawing.Size(124, 22);
             this.txtPrincipal.TabIndex = 1;
             this.txtPrincipal.Tag = "dollar";
-            this.txtPrincipal.Text = "$1 000.00";
+            this.txtPrincipal.Text = "$1000.00";
             this.txtPrincipal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPrincipal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrincipal_KeyDown);
             this.txtPrincipal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrincipal_KeyPress);
@@ -88,9 +90,10 @@
             // lblPeriods
             // 
             this.lblPeriods.AutoSize = true;
-            this.lblPeriods.Location = new System.Drawing.Point(12, 34);
+            this.lblPeriods.Location = new System.Drawing.Point(15, 42);
+            this.lblPeriods.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPeriods.Name = "lblPeriods";
-            this.lblPeriods.Size = new System.Drawing.Size(72, 13);
+            this.lblPeriods.Size = new System.Drawing.Size(96, 17);
             this.lblPeriods.TabIndex = 2;
             this.lblPeriods.Text = "Total Periods:";
             this.tltTotalPeriods.SetToolTip(this.lblPeriods, "The length of periods (i.e. time) that the principal and any subsequent investmen" +
@@ -100,18 +103,20 @@
             // lblGain
             // 
             this.lblGain.AutoSize = true;
-            this.lblGain.Location = new System.Drawing.Point(12, 58);
+            this.lblGain.Location = new System.Drawing.Point(15, 72);
+            this.lblGain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGain.Name = "lblGain";
-            this.lblGain.Size = new System.Drawing.Size(75, 13);
+            this.lblGain.Size = new System.Drawing.Size(102, 17);
             this.lblGain.TabIndex = 3;
             this.lblGain.Text = "Gain Rate (%):";
             this.tltGainRate.SetToolTip(this.lblGain, "The rate at which the investment will grow for every given period.");
             // 
             // txtPeriods
             // 
-            this.txtPeriods.Location = new System.Drawing.Point(241, 31);
+            this.txtPeriods.Location = new System.Drawing.Point(301, 39);
+            this.txtPeriods.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPeriods.Name = "txtPeriods";
-            this.txtPeriods.Size = new System.Drawing.Size(100, 20);
+            this.txtPeriods.Size = new System.Drawing.Size(124, 22);
             this.txtPeriods.TabIndex = 2;
             this.txtPeriods.Tag = "period";
             this.txtPeriods.Text = "10";
@@ -122,9 +127,10 @@
             // 
             // txtGain
             // 
-            this.txtGain.Location = new System.Drawing.Point(241, 55);
+            this.txtGain.Location = new System.Drawing.Point(301, 69);
+            this.txtGain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtGain.Name = "txtGain";
-            this.txtGain.Size = new System.Drawing.Size(100, 20);
+            this.txtGain.Size = new System.Drawing.Size(124, 22);
             this.txtGain.TabIndex = 3;
             this.txtGain.Tag = "rate";
             this.txtGain.Text = "1.00";
@@ -136,9 +142,10 @@
             // btnCalculate
             // 
             this.btnCalculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCalculate.Location = new System.Drawing.Point(255, 415);
+            this.btnCalculate.Location = new System.Drawing.Point(319, 519);
+            this.btnCalculate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(238, 23);
+            this.btnCalculate.Size = new System.Drawing.Size(298, 29);
             this.btnCalculate.TabIndex = 10;
             this.btnCalculate.Text = "Calculate";
             this.btnCalculate.UseVisualStyleBackColor = true;
@@ -147,9 +154,10 @@
             // lblAnnuityPayment
             // 
             this.lblAnnuityPayment.AutoSize = true;
-            this.lblAnnuityPayment.Location = new System.Drawing.Point(386, 31);
+            this.lblAnnuityPayment.Location = new System.Drawing.Point(482, 39);
+            this.lblAnnuityPayment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAnnuityPayment.Name = "lblAnnuityPayment";
-            this.lblAnnuityPayment.Size = new System.Drawing.Size(99, 13);
+            this.lblAnnuityPayment.Size = new System.Drawing.Size(134, 17);
             this.lblAnnuityPayment.TabIndex = 9;
             this.lblAnnuityPayment.Text = "Period Payment ($):";
             this.tltAnnuityAmount.SetToolTip(this.lblAnnuityPayment, "The amount you pay each period.");
@@ -157,9 +165,10 @@
             // txtAnnuityPayment
             // 
             this.txtAnnuityPayment.Enabled = false;
-            this.txtAnnuityPayment.Location = new System.Drawing.Point(615, 29);
+            this.txtAnnuityPayment.Location = new System.Drawing.Point(769, 36);
+            this.txtAnnuityPayment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtAnnuityPayment.Name = "txtAnnuityPayment";
-            this.txtAnnuityPayment.Size = new System.Drawing.Size(100, 20);
+            this.txtAnnuityPayment.Size = new System.Drawing.Size(124, 22);
             this.txtAnnuityPayment.TabIndex = 6;
             this.txtAnnuityPayment.Tag = "dollar";
             this.txtAnnuityPayment.Text = "$100.00";
@@ -171,9 +180,10 @@
             // 
             // txtCompoundingFrequency
             // 
-            this.txtCompoundingFrequency.Location = new System.Drawing.Point(241, 81);
+            this.txtCompoundingFrequency.Location = new System.Drawing.Point(301, 101);
+            this.txtCompoundingFrequency.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCompoundingFrequency.Name = "txtCompoundingFrequency";
-            this.txtCompoundingFrequency.Size = new System.Drawing.Size(100, 20);
+            this.txtCompoundingFrequency.Size = new System.Drawing.Size(124, 22);
             this.txtCompoundingFrequency.TabIndex = 4;
             this.txtCompoundingFrequency.Tag = "period";
             this.txtCompoundingFrequency.Text = "1";
@@ -185,9 +195,10 @@
             // lblCompoundingFrequency
             // 
             this.lblCompoundingFrequency.AutoSize = true;
-            this.lblCompoundingFrequency.Location = new System.Drawing.Point(12, 84);
+            this.lblCompoundingFrequency.Location = new System.Drawing.Point(15, 105);
+            this.lblCompoundingFrequency.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCompoundingFrequency.Name = "lblCompoundingFrequency";
-            this.lblCompoundingFrequency.Size = new System.Drawing.Size(128, 13);
+            this.lblCompoundingFrequency.Size = new System.Drawing.Size(170, 17);
             this.lblCompoundingFrequency.TabIndex = 11;
             this.lblCompoundingFrequency.Text = "Compounding Frequency:";
             this.tltEnterPeriods.SetToolTip(this.lblCompoundingFrequency, "The amount of times the investment will be compounded in a period.");
@@ -195,9 +206,10 @@
             // chkAnnuity
             // 
             this.chkAnnuity.AutoSize = true;
-            this.chkAnnuity.Location = new System.Drawing.Point(387, 5);
+            this.chkAnnuity.Location = new System.Drawing.Point(484, 6);
+            this.chkAnnuity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkAnnuity.Name = "chkAnnuity";
-            this.chkAnnuity.Size = new System.Drawing.Size(113, 17);
+            this.chkAnnuity.Size = new System.Drawing.Size(147, 21);
             this.chkAnnuity.TabIndex = 5;
             this.chkAnnuity.Text = "Periodic Payments";
             this.tltAnnuity.SetToolTip(this.chkAnnuity, "Enabling this will allow for you to put further investments\r\nevery period at eith" +
@@ -209,9 +221,10 @@
             // 
             this.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(527, 418);
+            this.lblTotal.Location = new System.Drawing.Point(659, 522);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(184, 23);
+            this.lblTotal.Size = new System.Drawing.Size(230, 28);
             this.lblTotal.TabIndex = 14;
             this.lblTotal.Text = "Final Value: ";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -220,9 +233,10 @@
             // 
             this.chkPaymentAt.AutoSize = true;
             this.chkPaymentAt.Enabled = false;
-            this.chkPaymentAt.Location = new System.Drawing.Point(580, 5);
+            this.chkPaymentAt.Location = new System.Drawing.Point(725, 6);
+            this.chkPaymentAt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkPaymentAt.Name = "chkPaymentAt";
-            this.chkPaymentAt.Size = new System.Drawing.Size(135, 17);
+            this.chkPaymentAt.Size = new System.Drawing.Size(176, 21);
             this.chkPaymentAt.TabIndex = 9;
             this.chkPaymentAt.Text = "Payment at Beginning?";
             this.tltDueAnnuityCheck.SetToolTip(this.chkPaymentAt, "This option allows you to choose if the payments happen at the beginning or end o" +
@@ -232,9 +246,10 @@
             // txtPaymentFrequency
             // 
             this.txtPaymentFrequency.Enabled = false;
-            this.txtPaymentFrequency.Location = new System.Drawing.Point(615, 81);
+            this.txtPaymentFrequency.Location = new System.Drawing.Point(769, 101);
+            this.txtPaymentFrequency.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPaymentFrequency.Name = "txtPaymentFrequency";
-            this.txtPaymentFrequency.Size = new System.Drawing.Size(100, 20);
+            this.txtPaymentFrequency.Size = new System.Drawing.Size(124, 22);
             this.txtPaymentFrequency.TabIndex = 8;
             this.txtPaymentFrequency.Tag = "period";
             this.txtPaymentFrequency.Text = "1";
@@ -246,9 +261,10 @@
             // lblPaymentFrequency
             // 
             this.lblPaymentFrequency.AutoSize = true;
-            this.lblPaymentFrequency.Location = new System.Drawing.Point(386, 84);
+            this.lblPaymentFrequency.Location = new System.Drawing.Point(482, 105);
+            this.lblPaymentFrequency.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPaymentFrequency.Name = "lblPaymentFrequency";
-            this.lblPaymentFrequency.Size = new System.Drawing.Size(107, 13);
+            this.lblPaymentFrequency.Size = new System.Drawing.Size(144, 17);
             this.lblPaymentFrequency.TabIndex = 16;
             this.lblPaymentFrequency.Text = "Payments per Period:";
             this.tltPaymentFrequency.SetToolTip(this.lblPaymentFrequency, resources.GetString("lblPaymentFrequency.ToolTip"));
@@ -256,9 +272,10 @@
             // txtPaymentGrowth
             // 
             this.txtPaymentGrowth.Enabled = false;
-            this.txtPaymentGrowth.Location = new System.Drawing.Point(615, 55);
+            this.txtPaymentGrowth.Location = new System.Drawing.Point(769, 69);
+            this.txtPaymentGrowth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPaymentGrowth.Name = "txtPaymentGrowth";
-            this.txtPaymentGrowth.Size = new System.Drawing.Size(100, 20);
+            this.txtPaymentGrowth.Size = new System.Drawing.Size(124, 22);
             this.txtPaymentGrowth.TabIndex = 7;
             this.txtPaymentGrowth.Tag = "rate";
             this.txtPaymentGrowth.Text = "1.00";
@@ -270,9 +287,10 @@
             // lblPaymentGrowth
             // 
             this.lblPaymentGrowth.AutoSize = true;
-            this.lblPaymentGrowth.Location = new System.Drawing.Point(386, 57);
+            this.lblPaymentGrowth.Location = new System.Drawing.Point(482, 71);
+            this.lblPaymentGrowth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPaymentGrowth.Name = "lblPaymentGrowth";
-            this.lblPaymentGrowth.Size = new System.Drawing.Size(156, 13);
+            this.lblPaymentGrowth.Size = new System.Drawing.Size(212, 17);
             this.lblPaymentGrowth.TabIndex = 18;
             this.lblPaymentGrowth.Text = "Payment Growth per Period (%):";
             this.tltPaymentGrowth.SetToolTip(this.lblPaymentGrowth, "The amount that the payment will grow at the end of every period. \r\nFor a fixed p" +
@@ -336,17 +354,19 @@
             // 
             // carcMain
             // 
-            this.carcMain.Location = new System.Drawing.Point(15, 115);
+            this.carcMain.Location = new System.Drawing.Point(19, 144);
+            this.carcMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.carcMain.Name = "carcMain";
-            this.carcMain.Size = new System.Drawing.Size(696, 282);
+            this.carcMain.Size = new System.Drawing.Size(870, 352);
             this.carcMain.TabIndex = 19;
             this.carcMain.Text = "cartesianChart1";
             // 
             // btnInvesting
             // 
-            this.btnInvesting.Location = new System.Drawing.Point(15, 415);
+            this.btnInvesting.Location = new System.Drawing.Point(19, 519);
+            this.btnInvesting.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnInvesting.Name = "btnInvesting";
-            this.btnInvesting.Size = new System.Drawing.Size(115, 23);
+            this.btnInvesting.Size = new System.Drawing.Size(144, 29);
             this.btnInvesting.TabIndex = 20;
             this.btnInvesting.Text = "Go to Investing";
             this.btnInvesting.UseVisualStyleBackColor = true;
@@ -354,11 +374,11 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Honeydew;
-            this.ClientSize = new System.Drawing.Size(723, 450);
+            this.ClientSize = new System.Drawing.Size(904, 562);
             this.Controls.Add(this.btnInvesting);
             this.Controls.Add(this.carcMain);
             this.Controls.Add(this.txtPaymentGrowth);
@@ -380,6 +400,7 @@
             this.Controls.Add(this.txtPrincipal);
             this.Controls.Add(this.lblEnterPrincipalLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Retirement Funds";
