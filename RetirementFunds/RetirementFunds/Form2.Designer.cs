@@ -394,7 +394,7 @@
             this.txtInflation.Size = new System.Drawing.Size(100, 20);
             this.txtInflation.TabIndex = 16;
             this.txtInflation.Tag = "rate";
-            this.txtInflation.Text = "2.00";
+            this.txtInflation.Text = "2.19";
             this.txtInflation.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtInflation.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtInflation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -508,7 +508,7 @@
             this.txtStockReturns.Size = new System.Drawing.Size(56, 20);
             this.txtStockReturns.TabIndex = 20;
             this.txtStockReturns.Tag = "rate";
-            this.txtStockReturns.Text = "7.50";
+            this.txtStockReturns.Text = "8.55";
             this.txtStockReturns.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtStockReturns.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtStockReturns.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
