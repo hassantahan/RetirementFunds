@@ -161,7 +161,6 @@ namespace RetirementFunds
         {
             // Set parameters
             bool incomeGrowthExcessOfInflation = chkInflationIncomeGrowthPeg.Checked;
-            //bool retirementPeggedToInflation = chkInflationRetirementSpendingPeg.Checked;
 
             int projectionType = cboProjection.SelectedIndex;
             int paymentFrequency = Investing.recurringInvestingFrequency;            
@@ -174,12 +173,13 @@ namespace RetirementFunds
             double bReturns = double.Parse(txtBondReturns.Text) / 100;
             double sReturns = double.Parse(txtStockReturns.Text) / 100;            
             double savingsGrowthRate = savingsGrowthRateFraction * incomeGrowthRate;
+            double time = 0;
 
             decimal currentInvestments = decimal.Parse(txtPrincipal.Text, NumberStyles.Currency);
             decimal initialSavings = decimal.Parse(txtIncome.Text, NumberStyles.Currency) - decimal.Parse(txtSpending.Text, NumberStyles.Currency);
             decimal goal = decimal.Parse(txtSavingsGoal.Text, NumberStyles.Currency);                                   
 
-            carcInvestment.Series.Clear();
+            carcInvestment.Series.Clear();            
 
             // 0 = fixed returns, 1 = monte-carlo; TODO: 2 = historical cycles
             if (projectionType == 0)
@@ -214,7 +214,8 @@ namespace RetirementFunds
 
                 GenerateChart(total, "Total");
                 GenerateChart(returns, "Return");
-                GenerateChart(principal, "Principal", goal);                
+                GenerateChart(principal, "Principal", goal, timeToRetire);
+                time = timeToRetire;
             }
             else if (projectionType == 1)
             {
@@ -237,7 +238,7 @@ namespace RetirementFunds
                 {
                     decimal x = currentInvestments;
                     Random r = new Random(DateTime.Now.Ticks.GetHashCode());
-
+                    lengths[i] = 0;
                     while (x < goal)
                     {                        
                         // Randomly generated return of the portfolio
@@ -290,30 +291,23 @@ namespace RetirementFunds
                 for (int i = 0; i < percentileLengths.Length; i++)
                 {
                     int k = percentileList.Length - i - 1;
-                    GenerateChart(percentileReturns[k], (100 * percentileList[i]).ToString("0") + "th Percentile Returns", goal);
+                    GenerateChart(percentileReturns[k], (100 * percentileList[i]).ToString("0") + "th Percentile Returns", goal, percentileLengths[2]);
                 }
 
-                decimal[] g = new decimal[(int)percentileLengths[0]];
-                for (int i = 0; i < g.Length; i++)
-                {
-                    g[i] = goal;
-                }
-
-                //SectionsCollection axisSection = new SectionsCollection();               
-                //GenerateChart(g, "Goal", true);
+                time = percentileLengths[2];
             }
 
-            //PrintResults(timeToRetire);
+            PrintResults(time);
         }
 
         private void PrintResults(double time)
         {
             int currentAge = int.Parse(txtAge.Text);
 
-            lblResults.Text = "It will take you " + time.ToString("0.0") + "  to reach your goal at age " + ((int)time + currentAge).ToString() + ".";
+            lblResults.Text = "It will take you " + time.ToString("0") + " years to reach your goal at age " + ((int)time + currentAge).ToString() + ".";
         }
 
-        private void GenerateChart(decimal[] values, string name, decimal goal = 0)
+        private void GenerateChart(decimal[] values, string name, decimal goal = 0, double time = 0)
         {
             int currentAge = int.Parse(txtAge.Text);            
 
@@ -336,6 +330,17 @@ namespace RetirementFunds
                 {
                     Title = "Years",
                     LabelFormatter = val => (val + currentAge).ToString(),
+                    Sections = new SectionsCollection
+                    {
+                        new AxisSection
+                        {
+                            Stroke = new SolidColorBrush(System.Windows.Media.Color.FromRgb(50, 168, 82)),
+                            StrokeThickness = 2.5,
+                            Value = time,
+                            Opacity = 100,
+                            //ToValue = (double)goal,
+                        }
+                    },
                 }
             );
 
@@ -350,12 +355,16 @@ namespace RetirementFunds
                     {
                         new AxisSection
                         {
-                            Value = 10 * (double)goal,
-                            Stroke = new SolidColorBrush(System.Windows.Media.Color.FromRgb(189, 17, 17))
+                            Stroke = new SolidColorBrush(System.Windows.Media.Color.FromRgb(50, 168, 82)),
+                            StrokeThickness = 2.5,
+                            //VisualElement = "Goal",
+                            Value = (double)goal,
+                            Opacity = 100,
                         }
                     },
-                }                
-            );
+                    
+                }
+            ) ;
         }
 
     }

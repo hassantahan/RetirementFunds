@@ -74,7 +74,6 @@
             this.line1 = new System.Windows.Forms.Label();
             this.lblResults = new System.Windows.Forms.Label();
             this.carcInvestment = new LiveCharts.WinForms.CartesianChart();
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblAge
@@ -138,7 +137,7 @@
             this.txtIncome.Size = new System.Drawing.Size(100, 20);
             this.txtIncome.TabIndex = 3;
             this.txtIncome.Tag = "dollar";
-            this.txtIncome.Text = "$75 000.00";
+            this.txtIncome.Text = "$75000.00";
             this.txtIncome.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtIncome.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtIncome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -162,7 +161,7 @@
             this.txtSavings.Size = new System.Drawing.Size(117, 20);
             this.txtSavings.TabIndex = 5;
             this.txtSavings.Tag = "";
-            this.txtSavings.Text = "$15 000.00 (20.0%)";
+            this.txtSavings.Text = "$15000.00 (20.0%)";
             this.txtSavings.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSavings.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtSavings.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -185,7 +184,7 @@
             this.txtSpending.Size = new System.Drawing.Size(100, 20);
             this.txtSpending.TabIndex = 4;
             this.txtSpending.Tag = "dollar";
-            this.txtSpending.Text = "$60 000.00";
+            this.txtSpending.Text = "$60000.00";
             this.txtSpending.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSpending.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtSpending.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -208,7 +207,7 @@
             this.txtRetirementSpending.Size = new System.Drawing.Size(100, 20);
             this.txtRetirementSpending.TabIndex = 10;
             this.txtRetirementSpending.Tag = "dollar";
-            this.txtRetirementSpending.Text = "$40 000.00";
+            this.txtRetirementSpending.Text = "$40000.00";
             this.txtRetirementSpending.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtRetirementSpending.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAge_KeyDown);
             this.txtRetirementSpending.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAge_KeyPress);
@@ -289,7 +288,7 @@
             this.txtSavingsGoal.Size = new System.Drawing.Size(100, 20);
             this.txtSavingsGoal.TabIndex = 15;
             this.txtSavingsGoal.Tag = "dollar";
-            this.txtSavingsGoal.Text = "$1 466 667";
+            this.txtSavingsGoal.Text = "$1466667";
             this.txtSavingsGoal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtIncomeGrowth
@@ -561,8 +560,9 @@
             this.lblResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResults.Location = new System.Drawing.Point(107, 219);
             this.lblResults.Name = "lblResults";
-            this.lblResults.Size = new System.Drawing.Size(2, 17);
+            this.lblResults.Size = new System.Drawing.Size(13, 17);
             this.lblResults.TabIndex = 46;
+            this.lblResults.Text = ".";
             // 
             // carcInvestment
             // 
@@ -572,20 +572,13 @@
             this.carcInvestment.TabIndex = 35;
             this.carcInvestment.Text = "cartesianChart1";
             // 
-            // label1
-            // 
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Location = new System.Drawing.Point(795, 151);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
-            this.label1.TabIndex = 47;
-            // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AcceptButton = this.btnRun;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1067, 557);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblResults);
             this.Controls.Add(this.line1);
             this.Controls.Add(this.btnRun);
@@ -691,6 +684,5 @@
         private System.Windows.Forms.Label line1;
         private System.Windows.Forms.Label lblResults;
         private LiveCharts.WinForms.CartesianChart carcInvestment;
-        private System.Windows.Forms.Label label1;
     }
 }
