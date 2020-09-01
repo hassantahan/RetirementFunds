@@ -73,6 +73,7 @@
             this.line1 = new System.Windows.Forms.Label();
             this.lblResults = new System.Windows.Forms.Label();
             this.carcInvestment = new LiveCharts.WinForms.CartesianChart();
+            this.btnForm1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblAge
@@ -607,6 +608,18 @@
             this.carcInvestment.TabIndex = 35;
             this.carcInvestment.Text = "cartesianChart1";
             // 
+            // btnForm1
+            // 
+            this.btnForm1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnForm1.Location = new System.Drawing.Point(1056, 195);
+            this.btnForm1.Margin = new System.Windows.Forms.Padding(4);
+            this.btnForm1.Name = "btnForm1";
+            this.btnForm1.Size = new System.Drawing.Size(111, 29);
+            this.btnForm1.TabIndex = 47;
+            this.btnForm1.Text = "Go back ";
+            this.btnForm1.UseVisualStyleBackColor = true;
+            this.btnForm1.Click += new System.EventHandler(this.btnBadaBoom_Click);
+            // 
             // Form2
             // 
             this.AcceptButton = this.btnRun;
@@ -614,6 +627,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1334, 696);
+            this.Controls.Add(this.btnForm1);
             this.Controls.Add(this.lblResults);
             this.Controls.Add(this.line1);
             this.Controls.Add(this.btnRun);
@@ -718,5 +732,6 @@
         private System.Windows.Forms.Label line1;
         private System.Windows.Forms.Label lblResults;
         private LiveCharts.WinForms.CartesianChart carcInvestment;
+        private System.Windows.Forms.Button btnForm1;
     }
 }

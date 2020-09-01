@@ -17,12 +17,15 @@ using System.Windows.Media;
 namespace RetirementFunds
 {
     public partial class Form2 : Form
-    {        
-        public Form2()
+    {
+        Form1 f1;
+        public Form2(Form1 originalForm)
         {
             InitializeComponent();
             cboProjection.SelectedIndex = 0;
             GenerateReturns();
+
+            f1 = originalForm;
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
@@ -223,7 +226,7 @@ namespace RetirementFunds
 
                 int simulations = 50000;
                 //double inflationVolatility = 0.0119;
-                double stockVolatility = 0.21;
+                double stockVolatility = 0.5;
                 double bondVolatility = 0.03;
 
                 double[] percentileList = { 0.9, 0.75, 0.5, 0.25, 0.1 };
@@ -367,5 +370,10 @@ namespace RetirementFunds
             ) ;
         }
 
+        private void btnBadaBoom_Click(object sender, EventArgs e)
+        {
+            f1.Show();
+            Hide();
+        }
     }
 }
