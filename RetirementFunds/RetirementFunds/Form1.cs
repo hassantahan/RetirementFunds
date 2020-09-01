@@ -19,12 +19,15 @@ namespace RetirementFunds
 {
     public partial class Form1 : Form
     {
+        Form2 f2;
         public Form1()
         {
             InitializeComponent();
             carcMain.Series = new SeriesCollection();
             GenerateChart(int.Parse(txtPeriods.Text), double.Parse(txtCompoundingFrequency.Text));
             lblTotal.Text = "Final Value: " + CalculatePrincipal(int.Parse(txtPeriods.Text)).ToString("C2");
+
+            f2 = new Form2(this);
         }
 
         private void chkAnnuity_CheckedChanged(object sender, EventArgs e)
@@ -192,10 +195,10 @@ namespace RetirementFunds
             );
         }
 
+        
         // Open Investing Form
         private void btnInvesting_Click(object sender, EventArgs e)
-        {                        
-            Form2 f2 = new Form2();                   
+        {                                  
             f2.Show();
             Hide();
         }
